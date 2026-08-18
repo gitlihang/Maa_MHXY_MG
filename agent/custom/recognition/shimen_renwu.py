@@ -5,7 +5,7 @@ import json
 import random
 import time
 
-from utils import logger
+from utils import logger, HumanSimulator
 
 
 @AgentServer.custom_recognition("shimen_renwu_decide")
@@ -153,14 +153,16 @@ class ShimenRenwuDecide(CustomRecognition):
             self._reset_miss_streak()
             return CustomRecognition.AnalyzeResult(box=None, detail=f"打造任务:{hit_name} 完成")
 
-        # ② 非打造类师门任务：agent 内直接下发点击，返回未识别（box=None）
+        # ② 非打造类师门任务：agent 内直接下发拟人化点击，返回未识别（box=None）
         for res in results:
             if "师门" in res.text:
-                center_x = res.box[0] + res.box[2] // 2
-                center_y = res.box[1] + res.box[3] // 2
-                logger.info(f"[shimen_decide] 识别到师门任务，agent 内点击 ({center_x}, {center_y})")
-                context.tasker.controller.post_click(center_x, center_y).wait()
-                time.sleep(7)  # 原节点 post_delay:7000，等任务面板跳转
+                target_x, target_y = HumanSimulator.get_gaussian_point(res.box)
+                logger.info(f"[shimen_decide] 识别到师门任务，拟人化点击 ({target_x}, {target_y})")
+                HumanSimulator.sleep_human(0.3, 0.2)
+                context.tasker.controller.post_click(target_x, target_y).wait()
+                # 拟人化延迟等待任务面板跳转（原 post_delay:7000，加入正态波动）
+                HumanSimulator.sleep_human(7.0, 0.15)
+                HumanSimulator.random_idle(chance=0.06, min_sec=2.0, max_sec=5.0)
 
                 # 点击后面板可能出现「使用抄本」按钮 → 运行一次兜底节点清除。
                 # run_task 以该节点为 entry 同步执行；节点 next 为空，命中即点一次即结束。

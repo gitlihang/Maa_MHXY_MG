@@ -1,9 +1,7 @@
-from maa.custom_action import CustomAction
-
-from typing import Dict, Any
 import os
 import json
 import re
+from typing import Dict, Any
 
 # 本地存储
 class LocalStorage:

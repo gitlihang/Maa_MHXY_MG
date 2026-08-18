@@ -1,11 +1,10 @@
 
 from PIL import Image
 from maa.agent.agent_server import AgentServer
-from maa.custom_recognition  import CustomRecognition
+from maa.custom_recognition import CustomRecognition
 from maa.context import Context
 from typing import Dict, List, Tuple
-from utils import logger
-from utils import SendJinSan
+from utils import logger, SendJinSan, HumanSimulator
 import time
 import re
 
@@ -106,13 +105,14 @@ class sjqy_tiku_V2(CustomRecognition):
             text = clean_string(ext)
             # 获取答案list[]
             results_value, confidence ,match_type = SearchQuestions(text)
-            # 如果可信度为零，点击第一个答案
+            # 如果可信度为零，点击第一个答案（拟人化偏移与延时）
             if confidence == 0:
                 # logger.info(f"题库中未找到答案，问题为:{text}.请反馈开发者填充题库")
                 NotAnswerCount = NotAnswerCount + 1
-                time.sleep(2)
-                context.tasker.controller.post_click(500, 344).wait()
-                time.sleep(3)
+                HumanSimulator.sleep_human(1.2, 0.2)
+                tx, ty = HumanSimulator.get_point_offset(500, 344, radius=6.0)
+                context.tasker.controller.post_click(tx, ty).wait()
+                HumanSimulator.sleep_human(2.5, 0.25)
                 continue
         
             # 识别答案位置
@@ -129,20 +129,20 @@ class sjqy_tiku_V2(CustomRecognition):
                             )
             # logger.info("new_reco_detail为：{new_reco_detail}")
             # logger.info(new_reco_detail.box)
-            # 点击答案
+            # 点击答案（拟人化高斯落点与延时）
             if new_reco_detail and new_reco_detail.hit:
                 box = new_reco_detail.box  # 假设box为(x, y, w, h)
-                center_x = box[0] + box[2] // 2
-                center_y = box[1] + box[3] // 2 
-                time.sleep(2)
-                click_job = context.tasker.controller.post_click(center_x, center_y)
+                target_x, target_y = HumanSimulator.get_gaussian_point(box)
+                HumanSimulator.sleep_human(1.2, 0.2)
+                click_job = context.tasker.controller.post_click(target_x, target_y)
                 click_job.wait()  # 等待点击操作完成
-            
-                time.sleep(2)
-            else:#没找到答案，点击的一个
-                time.sleep(2)
-                context.tasker.controller.post_click(500, 344).wait()
-                time.sleep(1)
+                HumanSimulator.sleep_human(1.8, 0.25)
+                HumanSimulator.random_idle(chance=0.08, min_sec=2.0, max_sec=5.0)
+            else:  # 没找到答案，拟人化点击第一个
+                HumanSimulator.sleep_human(1.2, 0.2)
+                tx, ty = HumanSimulator.get_point_offset(500, 344, radius=6.0)
+                context.tasker.controller.post_click(tx, ty).wait()
+                HumanSimulator.sleep_human(1.0, 0.2)
 
         logger.info(f"未在题库中搜索到答案次数:{NotAnswerCount}，请反馈开发者填充题库。")
         return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="答题结束")
@@ -195,7 +195,7 @@ class sjqy_tiku_V3(CustomRecognition):
         # 当第一次进入答题时，需要暂停一秒后在开始截图。
         max_hit = context.get_hit_count("活动-三界奇缘-开始答题_agent")
         if max_hit == 0:
-            time.sleep(1.5)
+            HumanSimulator.sleep_human(1.5, 0.2)
         
         #识别三界奇缘题目
         image1 = context.tasker.controller.post_screencap().wait().get()
@@ -252,9 +252,10 @@ class sjqy_tiku_V3(CustomRecognition):
                 logger.info(f"[color:red]未与题库匹配。[/color]识别题目：{text}，匹配度：{confidence}，已经登记在线文档")
             else:
                 logger.error(f"登记在线文档失败:{text}")
-            time.sleep(2)
-            context.tasker.controller.post_click(500, 344).wait()
-            time.sleep(3)
+            HumanSimulator.sleep_human(1.2, 0.2)
+            tx, ty = HumanSimulator.get_point_offset(500, 344, radius=6.0)
+            context.tasker.controller.post_click(tx, ty).wait()
+            HumanSimulator.sleep_human(2.5, 0.25)
             return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="题库缺少本问题")
         elif confidence >=80 and confidence < 100:
             
@@ -279,23 +280,22 @@ class sjqy_tiku_V3(CustomRecognition):
                         )
         # logger.info("new_reco_detail为：{new_reco_detail}")
         # logger.info(new_reco_detail.box)
-        # 点击答案
+        # 点击答案（拟人化高斯落点与延时）
         if new_reco_detail and new_reco_detail.hit:
             box = new_reco_detail.box  # 假设box为(x, y, w, h)
-            center_x = box[0] + box[2] // 2
-            center_y = box[1] + box[3] // 2 
-            time.sleep(2)
-            click_job = context.tasker.controller.post_click(center_x, center_y)
+            target_x, target_y = HumanSimulator.get_gaussian_point(box)
+            HumanSimulator.sleep_human(1.2, 0.2)
+            click_job = context.tasker.controller.post_click(target_x, target_y)
             click_job.wait()  # 等待点击操作完成
-            # image2 = context.tasker.controller.post_screencap().wait().get()
-            # logger.info(image2)
-            logger.info(f"[color:blue]正确点击答案。[/color]识别题目：{text}。题库答案：{results_value}。匹配度：{confidence}。")
-            time.sleep(2)
-        else:#没找到答案，点击的一个
-            time.sleep(2)
-            context.tasker.controller.post_click(500, 344).wait()
-            logger.info(f"[color:red]未在界面找到答案，点击第一个答案。[/color]识别题目：{text}。题库答案：{results_value}。匹配度：{confidence}。")
-            time.sleep(1)
+            logger.info(f"[color:blue]正确点击答案。[/color]识别题目：{text}。题库答案：{results_value}。匹配度：{confidence}。落点：({target_x}, {target_y})")
+            HumanSimulator.sleep_human(1.8, 0.25)
+            HumanSimulator.random_idle(chance=0.08, min_sec=2.0, max_sec=5.0)
+        else:  # 没找到答案，点击第一个
+            HumanSimulator.sleep_human(1.2, 0.2)
+            tx, ty = HumanSimulator.get_point_offset(500, 344, radius=6.0)
+            context.tasker.controller.post_click(tx, ty).wait()
+            logger.info(f"[color:red]未在界面找到答案，点击第一个答案。[/color]识别题目：{text}。题库答案：{results_value}。匹配度：{confidence}。落点：({tx}, {ty})")
+            HumanSimulator.sleep_human(1.0, 0.2)
 
         # logger.info(f"未在题库中搜索到答案次数:{NotAnswerCount}，请反馈开发者填充题库。")
         return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="答题结束")

@@ -2,11 +2,10 @@ from maa.agent.agent_server import AgentServer
 from maa.custom_recognition import CustomRecognition
 from maa.context import Context
 import json
-import random
 import time
 import math
 
-from utils import logger
+from utils import logger, HumanSimulator
 
 @AgentServer.custom_recognition("zhuogui_hundui")
 class zhuogui_hundui(CustomRecognition):
@@ -79,23 +78,26 @@ class zhuogui_hundui(CustomRecognition):
 
         # 判断是否满足结束条件
         if int(Received_double_points) + int(Not_Received_double_points) <= int(User_points): # 活力点数小于用户指定值
-            logger.info(f"满足力点数小于用户指定值，任务结束")
+            logger.info("满足力点数小于用户指定值，任务结束")
             context.run_task("tuichuduiwu")
             return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="活力点数小于用户指定值，捉鬼任务结束")
         elif current_hh > Uset_time_HH or (current_hh == Uset_time_HH and current_mm > Uset_time_MM): # 时间超过定时的时间
-            logger.info(f"满足时间超过定时的时间，任务结束")
+            logger.info("满足时间超过定时的时间，任务结束")
             context.run_task("tuichuduiwu")
             return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="时间大于用户指定时间，捉鬼任务结束")
         else:
             # 根据点击次数，执行领取双倍点数的任务
             for _ in range(max_click):
                 context.run_task("混队-抓鬼-双倍点数领取")
-            logger.info(f"未满足任务结束条件，领取双倍点数，并继续开始捉鬼混队")
+                HumanSimulator.sleep_human(1.0, 0.2)
+            logger.info("未满足任务结束条件，领取双倍点数，并继续开始捉鬼混队")
+            HumanSimulator.sleep_human(1.5, 0.25)
+            # 拟人化挂机发呆机制
+            HumanSimulator.random_idle(chance=0.1, min_sec=3.0, max_sec=8.0)
             context.run_task("tuichuduiwu")
+            HumanSimulator.sleep_human(1.2, 0.2)
             context.run_task("zhuogui_hundui")
             return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="未满足结束条件，继续任务")
-
-        # return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="捉鬼任务结束")
 
 
 @AgentServer.custom_recognition("zhuogui_end_once")
@@ -110,9 +112,8 @@ class zhuogui_end_once(CustomRecognition):
          ) -> CustomRecognition.AnalyzeResult:
         
         image = context.tasker.controller.post_screencap().wait().get()
-        time.sleep(3000)
+        HumanSimulator.sleep_human(3.0, 0.2)
         image2 = context.tasker.controller.post_screencap().wait().get()
-        #我想对比image和image2相似度，按0.7标准，有没有函数
        
 
         return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="")

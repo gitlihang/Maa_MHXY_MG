@@ -1,7 +1,7 @@
 from maa.agent.agent_server import AgentServer
-from maa.custom_recognition  import CustomRecognition
+from maa.custom_recognition import CustomRecognition
 from maa.context import Context
-from utils import logger
+from utils import logger, HumanSimulator
 import requests
 import json
 import time
@@ -204,17 +204,17 @@ class AIAnswer(CustomRecognition):
                     return f"解析回复时出错: {e}"
             listAnswer= get_ai_answer(question,answer)
             # logger.info(f"listAnswer为：{listAnswer}")
-            # 点击box中心位置
+            # 点击选项位置（拟人化高斯落点与延时）
             def clickBox(box):
                 new_context = context.clone()
-                center_x = box[0] + box[2] // 2
-                center_y = box[1] + box[3] // 2 
-                time.sleep(2)
-                click_job = new_context.tasker.controller.post_click(center_x, center_y)
+                target_x, target_y = HumanSimulator.get_gaussian_point(box)
+                HumanSimulator.sleep_human(1.2, 0.2)
+                click_job = new_context.tasker.controller.post_click(target_x, target_y)
                 click_job.wait()  # 等待点击操作完成
                 # 向用户ui界面输出日志info
-                logger.info(f"AI返回答案：{listAnswer}。识别题目：{question}，识别答案列表：{answer}")
-                time.sleep(2)
+                logger.info(f"AI返回答案：{listAnswer}。识别题目：{question}，识别答案列表：{answer}。落点坐标：({target_x}, {target_y})")
+                HumanSimulator.sleep_human(1.5, 0.25)
+                HumanSimulator.random_idle(chance=0.08, min_sec=2.0, max_sec=5.0)
             if listAnswer =="A" or listAnswer == "a":
                 abox=[509,306,269,91]
                 clickBox(abox)
@@ -441,16 +441,17 @@ class zhipu(CustomRecognition):
             else:
                 return f"# 注释：AI的回复 '{ai_response}' 不在有效选项 {list(valid_keys)} 中，无法确定答案。"
         listAnswer= solve_riddle(question,answer)
+        # 点击选项位置（拟人化高斯落点与延时）
         def clickBox(box):
             new_context = context.clone()
-            center_x = box[0] + box[2] // 2
-            center_y = box[1] + box[3] // 2 
-            time.sleep(2)
-            click_job = new_context.tasker.controller.post_click(center_x, center_y)
+            target_x, target_y = HumanSimulator.get_gaussian_point(box)
+            HumanSimulator.sleep_human(1.2, 0.2)
+            click_job = new_context.tasker.controller.post_click(target_x, target_y)
             click_job.wait()  # 等待点击操作完成
             # 向用户ui界面输出日志info
-            logger.info(f"AI返回答案：{listAnswer}。识别题目：{question}，识别答案列表：{answer}")
-            time.sleep(2)
+            logger.info(f"AI返回答案：{listAnswer}。识别题目：{question}，识别答案列表：{answer}。落点坐标：({target_x}, {target_y})")
+            HumanSimulator.sleep_human(1.5, 0.25)
+            HumanSimulator.random_idle(chance=0.08, min_sec=2.0, max_sec=5.0)
         if listAnswer =="A" or listAnswer == "a":
             abox=[509,306,269,91]
             clickBox(abox)

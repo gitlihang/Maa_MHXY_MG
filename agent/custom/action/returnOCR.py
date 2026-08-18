@@ -1,9 +1,10 @@
+import json
 from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
 from maa.context import Context
-import json
 
-from utils import logger
+from utils import logger, HumanSimulator
+
 
 @AgentServer.custom_action("returnOCR")
 class ReturnOCR(CustomAction):
@@ -13,14 +14,14 @@ class ReturnOCR(CustomAction):
             "action_key": "Click",
             "recognition_name": "识别输出测试",
             "return_text": "输出的描述"
-            "click_target": []  # 点击坐标，格式为[x1, y1, x2, y2]，仅在action_key为Click时使用
+            "click_target": []  # 点击坐标，格式为[x, y, w, h]，仅在action_key为Click时使用
         }
         action_key: 动作名称，用于判断动作类型，如Click、Move等
         recognition_name: task任务名称,用于指定识别任务名称，返回该节点的结果。
         return_text: 输出的描述，用于指定返回的描述
-        click_target: 点击坐标，格式为[x1, y1, x2, y2]，仅在action_key为Click时使用。如果不提供click_target，则默认点击识别结果的中心位置。
-
+        click_target: 点击坐标，格式为[x, y, w, h]，仅在action_key为Click时使用。如果不提供click_target，则默认点击识别结果的拟人高斯位置。
     """
+
     def run(
         self,
         context: Context,
@@ -50,20 +51,20 @@ class ReturnOCR(CustomAction):
             logger.info(f"{return_text}: {best_result.text}")
             # 根据action_key执行不同的动作
             if action_key == "Click":
-                # 点击传入参数中的坐标位置
-                if click_target:
-                    box = click_target
-                    center_x = box[0] + box[2] // 2
-                    center_y = box[1] + box[3] // 2
-                    logger.debug(f"点击位置: ({center_x}, {center_y})")
-                    context.tasker.controller.post_click(center_x, center_y).wait()
-                # 点击最佳识别结果的中心位置
-                elif best_result:
-                    box = best_result.box
-                    center_x = box[0] + box[2] // 2
-                    center_y = box[1] + box[3] // 2
-                    logger.debug(f"点击位置: ({center_x}, {center_y})")
-                    context.tasker.controller.post_click(center_x, center_y).wait()
+                # 点击传入参数中的坐标位置（高斯拟人落点）
+                if click_target and len(click_target) >= 4:
+                    target_x, target_y = HumanSimulator.get_gaussian_point(click_target)
+                    logger.debug(f"拟人点击位置: ({target_x}, {target_y})")
+                    HumanSimulator.sleep_human(0.2, 0.2)
+                    context.tasker.controller.post_click(target_x, target_y).wait()
+                    HumanSimulator.sleep_human(0.3, 0.2)
+                # 点击最佳识别结果的拟人高斯位置
+                elif best_result and best_result.box:
+                    target_x, target_y = HumanSimulator.get_gaussian_point(best_result.box)
+                    logger.debug(f"拟人点击位置: ({target_x}, {target_y})")
+                    HumanSimulator.sleep_human(0.2, 0.2)
+                    context.tasker.controller.post_click(target_x, target_y).wait()
+                    HumanSimulator.sleep_human(0.3, 0.2)
                 else:
                     logger.warning("没有识别到结果，无法执行点击")
             elif action_key == "":
