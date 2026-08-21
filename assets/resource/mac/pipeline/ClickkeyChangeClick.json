@@ -337,22 +337,24 @@
         ]
     },
     "115返回长安城": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "zonghe/xiaoditu_taiyang.png",
-            "zonghe/xiaoditu_yueliang.png"
+        "recognition": "OCR",
+        "expected": [
+            "长安城"
         ],
         "roi": [
+            108,
+            22,
+            117,
+            31
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "target": [
             58,
             1,
             75,
             79
         ],
-        "threshold": [
-            0.9
-        ],
-        "pre_delay": 500,
-        "action": "Click",
         "post_delay": 1000,
         "next": [
             "115返回长安城-点击地图-百晓仙子",
@@ -1277,11 +1279,1666 @@
     },
     "panduan_zhujiemian": {
         "next": [
+            "[JumpBack]amazing_discount",
             "[JumpBack]panduan_zhujiemian_ks_mac",
+            "[JumpBack]close_exit_confirm_mac",
             "zai_zhujiemian"
         ]
     },
     "panduan_zhujiemian_ks_mac": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zonghe/guanbi1.png",
+                    "zonghe/guanbi2.png",
+                    "zonghe/guanbi3.png",
+                    "zonghe/guanbi4.png",
+                    "zonghe/guanbi5.png",
+                    "zonghe/guanbi6.png",
+                    "zonghe/guanbi7.png",
+                    "jineng/zahuopu_guanbi.png",
+                    "zonghe/zhandoupingheng_guanbi1.png",
+                    "qiandao/liaotian_guanbi.png",
+                    "zonghe/amazing_discount_close.png",
+                    "zonghe/dazao_guanbi.png"
+                ]
+            },
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "duiwu/duiwu-guanbi.png"
+                ],
+                "roi": [
+                    1153,
+                    0,
+                    100,
+                    98
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000
+    },
+    "活动-门派闯关-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-门派闯关-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-门派闯关-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-门派闯关-开始",
+            "活动-门派闯关-未到开始时间",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-迷魂塔-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-迷魂塔-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-迷魂塔-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-迷魂塔-开始",
+            "活动-迷魂塔-未到开始时间",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-召唤灵梦境-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-召唤灵梦境-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-召唤灵梦境-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-召唤灵梦境-开始",
+            "活动-召唤灵梦境-未到开始时间",
+            "活动-召唤灵梦境-结束",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-百草谷-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-百草谷-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-百草谷-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-百草谷-开始",
+            "活动-百草谷-已完成",
+            "活动-百草谷-未开始",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-九黎-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-九黎-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-九黎-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-九黎-开始",
+            "活动-九黎-已完成",
+            "活动-九黎-未开始",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-迷阵-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-迷阵-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-迷阵-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-迷阵-开始",
+            "活动-迷阵-已完成",
+            "活动-迷阵-未开始",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-帮派任务-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-帮派任务-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-帮派任务-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-帮派任务-开始",
+            "[JumpBack]bangpai_huodong_down"
+        ]
+    },
+    "活动-宝图任务-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-宝图任务-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-宝图任务-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-宝图任务-开始",
+            "活动-宝图任务-已完成",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "古董售卖-打开背包成功-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            907,
+            220,
+            1,
+            1
+        ],
+        "end": [
+            [
+                908,
+                447,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "recognition": "TemplateMatch",
+        "template": "beibao/beibao_jiemian_panduan.png",
+        "roi": [
+            335,
+            5,
+            577,
+            68
+        ],
+        "post_delay": 500,
+        "next": [
+            "古董售卖-打开背包成功-向上滑动到顶端_mac_2"
+        ]
+    },
+    "古董售卖-打开背包成功-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            907,
+            220,
+            1,
+            1
+        ],
+        "end": [
+            [
+                908,
+                447,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 1000,
+        "next": [
+            "古董售卖-打开背包成功-向上滑动到顶端_mac_3"
+        ]
+    },
+    "古董售卖-打开背包成功-向上滑动到顶端_mac_3": {
+        "action": "Swipe",
+        "begin": [
+            907,
+            220,
+            1,
+            1
+        ],
+        "end": [
+            [
+                908,
+                447,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 1000,
+        "next": [
+            "古董售卖-点击整理"
+        ]
+    },
+    "活动-科举乡试-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-科举乡试-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-科举乡试-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-科举乡试-开始",
+            "活动-科举乡试-未到开始时间",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-秘境降妖-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-秘境降妖-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-秘境降妖-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-秘境降妖-开始",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-趣味鉴赏-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-趣味鉴赏-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-趣味鉴赏-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-趣味鉴赏-开始",
+            "活动-趣味鉴赏-已完成",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-三界奇缘-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-三界奇缘-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-三界奇缘-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-三界奇缘-开始",
+            "活动-三界奇缘-未到开始时间",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "师门-下滑任务栏-三次": {
+        "action": "Swipe",
+        "begin": [
+            1147,
+            207,
+            1,
+            1
+        ],
+        "end": [
+            [
+                1138,
+                403,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "max_hit": 3,
+        "post_delay": 1000
+    },
+    "挖宝图-打开背包-成功-并向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            906,
+            185,
+            1,
+            1
+        ],
+        "end": [
+            [
+                906,
+                548,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "recognition": "TemplateMatch",
+        "template": "beibao/beibao_jiemian_panduan.png",
+        "roi": [
+            335,
+            5,
+            577,
+            68
+        ],
+        "pre_delay": 1000,
+        "post_delay": 500,
+        "next": [
+            "挖宝图-打开背包-成功-并向上滑动到顶端_mac_2"
+        ]
+    },
+    "挖宝图-打开背包-成功-并向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            906,
+            185,
+            1,
+            1
+        ],
+        "end": [
+            [
+                906,
+                548,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 1000,
+        "next": [
+            "挖宝图-打开背包-成功-并向上滑动到顶端_mac_3"
+        ]
+    },
+    "挖宝图-打开背包-成功-并向上滑动到顶端_mac_3": {
+        "action": "Swipe",
+        "begin": [
+            906,
+            185,
+            1,
+            1
+        ],
+        "end": [
+            [
+                906,
+                548,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 1000,
+        "next": [
+            "挖宝图-点击整理"
+        ]
+    },
+    "活动-五行修业-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-五行修业-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-五行修业-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-五行修业-开始",
+            "活动-五行修业-已完成",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "活动-运镖-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 500,
+        "next": [
+            "活动-运镖-向上滑动到顶端_mac_2"
+        ]
+    },
+    "活动-运镖-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
+        ],
+        "end": [
+            [
+                732,
+                444,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 1000,
+        "next": [
+            "活动-运镖-开始",
+            "[JumpBack]baotu_huodong_down"
+        ]
+    },
+    "打开背包成功-向上滑动到顶端": {
+        "action": "Swipe",
+        "begin": [
+            907,
+            220,
+            1,
+            1
+        ],
+        "end": [
+            [
+                908,
+                447,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "recognition": "TemplateMatch",
+        "template": "beibao/beibao_jiemian_panduan.png",
+        "roi": [
+            335,
+            5,
+            577,
+            68
+        ],
+        "post_delay": 500,
+        "next": [
+            "打开背包成功-向上滑动到顶端_mac_2"
+        ]
+    },
+    "打开背包成功-向上滑动到顶端_mac_2": {
+        "action": "Swipe",
+        "begin": [
+            907,
+            220,
+            1,
+            1
+        ],
+        "end": [
+            [
+                908,
+                447,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 1000,
+        "next": [
+            "打开背包成功-向上滑动到顶端_mac_3"
+        ]
+    },
+    "打开背包成功-向上滑动到顶端_mac_3": {
+        "action": "Swipe",
+        "begin": [
+            907,
+            220,
+            1,
+            1
+        ],
+        "end": [
+            [
+                908,
+                447,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "post_delay": 1000,
+        "next": [
+            "点击整理"
+        ]
+    },
+    "捉鬼-下滑任务栏": {
+        "action": "Swipe",
+        "begin": [
+            1147,
+            207,
+            1,
+            1
+        ],
+        "end": [
+            [
+                1138,
+                403,
+                1,
+                1
+            ]
+        ],
+        "duration": [
+            200
+        ],
+        "max_hit": 4,
+        "post_delay": 1000
+    },
+    "click_tab_mijing": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/xiaoditu_taiyang.png",
+            "zonghe/xiaoditu_yueliang.png"
+        ],
+        "roi": [
+            58,
+            1,
+            75,
+            79
+        ],
+        "threshold": [
+            0.9
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "东海湾小地图打开成功",
+            "[JumpBack]小地图-按键打开失败-点击小地图图标"
+        ]
+    },
+    "在两界山_打开小地图": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/xiaoditu_taiyang.png",
+            "zonghe/xiaoditu_yueliang.png"
+        ],
+        "roi": [
+            58,
+            1,
+            75,
+            79
+        ],
+        "threshold": [
+            0.9
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "max_hit": 1,
+        "next": [
+            "两界山小地图_打开成功"
+        ]
+    },
+    "抓鬼-关闭组队后打开小地图": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/xiaoditu_taiyang.png",
+            "zonghe/xiaoditu_yueliang.png"
+        ],
+        "roi": [
+            58,
+            1,
+            75,
+            79
+        ],
+        "threshold": [
+            0.9
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "抓鬼-关闭组队后打开小地图点击钟馗",
+            "[JumpBack]小地图-按键打开失败-点击小地图图标"
+        ]
+    },
+    "捉鬼-领取任务失败-再次尝试领取-打开小地图": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/xiaoditu_taiyang.png",
+            "zonghe/xiaoditu_yueliang.png"
+        ],
+        "roi": [
+            58,
+            1,
+            75,
+            79
+        ],
+        "threshold": [
+            0.9
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "max_hit": 1,
+        "next": [
+            "捉鬼-领取任务失败-再次尝试领取-点击钟馗",
+            "[JumpBack]小地图-按键打开失败-点击小地图图标"
+        ]
+    },
+    "队长踢人过渡": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "duiwu/duiwu.png"
+                ],
+                "roi": [
+                    1161,
+                    104,
+                    119,
+                    65
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": "队伍",
+                "roi": [
+                    1161,
+                    104,
+                    119,
+                    65
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "队长踢人-进入主界面",
+            "[JumpBack]队伍界面-按键打开失败-点击队伍图标"
+        ]
+    },
+    "混队-抓鬼-打开队伍界面": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "duiwu/duiwu.png"
+                ],
+                "roi": [
+                    1161,
+                    104,
+                    119,
+                    65
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": "队伍",
+                "roi": [
+                    1161,
+                    104,
+                    119,
+                    65
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 500,
+        "next": [
+            "混队-抓鬼-未在队伍中-开始混队捉鬼任务"
+        ]
+    },
+    "队长过渡": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "r5/haoyou1.png",
+                    "r5/haoyou2.png"
+                ],
+                "roi": [
+                    0,
+                    435,
+                    84,
+                    80
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "好友"
+                ],
+                "roi": [
+                    0,
+                    435,
+                    84,
+                    80
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "邀请队员-打开好友界面成功",
+            "[JumpBack]好友界面-按键打开失败-点击好友图标"
+        ]
+    },
+    "古董售卖-过渡": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zonghe/baoguo.png",
+                    "zonghe/baoguo_man.png"
+                ],
+                "roi": [
+                    1185,
+                    529,
+                    95,
+                    110
+                ],
+                "threshold": [
+                    0.9
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "包裹",
+                    "包",
+                    "裹"
+                ],
+                "roi": [
+                    1211,
+                    591,
+                    58,
+                    38
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "古董售卖-打开背包成功-向上滑动到顶端",
+            "[JumpBack]背包界面-按键打开失败-点击图标"
+        ]
+    },
+    "背包金币数量-第一次": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zonghe/baoguo.png",
+                    "zonghe/baoguo_man.png"
+                ],
+                "roi": [
+                    1185,
+                    529,
+                    95,
+                    110
+                ],
+                "threshold": [
+                    0.9
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "包裹",
+                    "包",
+                    "裹"
+                ],
+                "roi": [
+                    1211,
+                    591,
+                    58,
+                    38
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "max_hit": 1,
+        "next": [
+            "背包金币数量-打开背包成功",
+            "[JumpBack]背包界面-按键打开失败-点击图标"
+        ]
+    },
+    "背包金币数量-第二次": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zonghe/baoguo.png",
+                    "zonghe/baoguo_man.png"
+                ],
+                "roi": [
+                    1185,
+                    529,
+                    95,
+                    110
+                ],
+                "threshold": [
+                    0.9
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "包裹",
+                    "包",
+                    "裹"
+                ],
+                "roi": [
+                    1211,
+                    591,
+                    58,
+                    38
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "max_hit": 1,
+        "next": [
+            "背包金币数量-打开背包成功",
+            "[JumpBack]背包界面-按键打开失败-点击图标"
+        ]
+    },
+    "主界面-秘境降妖": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zonghe/huodong1.png",
+                    "zonghe/huodong2.png"
+                ],
+                "roi": [
+                    316,
+                    2,
+                    79,
+                    78
+                ],
+                "threshold": [
+                    0.9
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "活动",
+                    "舌动"
+                ],
+                "roi": [
+                    316,
+                    2,
+                    79,
+                    78
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "活动-秘境降妖",
+            "[JumpBack]活动-界面-打开失败-点击活动图片",
+            "[JumpBack]战斗平衡弹窗-点击关闭"
+        ]
+    },
+    "主界面-五行修业": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zonghe/huodong1.png",
+                    "zonghe/huodong2.png"
+                ],
+                "roi": [
+                    316,
+                    2,
+                    79,
+                    78
+                ],
+                "threshold": [
+                    0.9
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "活动",
+                    "舌动"
+                ],
+                "roi": [
+                    316,
+                    2,
+                    79,
+                    78
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "[JumpBack]展开-首页任务栏",
+            "[JumpBack]任务栏切换为任务",
+            "[JumpBack]baotu_huadong_down",
+            "五行修业-领取任务成功",
+            "活动-五行修业",
+            "[JumpBack]活动-界面-打开失败-点击活动图片",
+            "[JumpBack]战斗平衡弹窗-点击关闭"
+        ]
+    },
+    "主界面-领取帮派任务": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zonghe/huodong1.png",
+                    "zonghe/huodong2.png"
+                ],
+                "roi": [
+                    316,
+                    2,
+                    79,
+                    78
+                ],
+                "threshold": [
+                    0.9
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "活动",
+                    "舌动"
+                ],
+                "roi": [
+                    316,
+                    2,
+                    79,
+                    78
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 2000,
+        "next": [
+            "活动-帮派任务",
+            "[JumpBack]活动-界面-打开失败-点击活动图片",
+            "[JumpBack]战斗平衡弹窗-点击关闭"
+        ]
+    },
+    "工坊考古-打开技能界面": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "jineng/jineng.png"
+                ],
+                "roi": [
+                    1038,
+                    620,
+                    94,
+                    89
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "技能"
+                ],
+                "roi": [
+                    1051,
+                    676,
+                    67,
+                    33
+                ]
+            }
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "工坊考古-打开技能界面成功",
+            "[JumpBack]技能界面-按键打开失败-点击技能图标"
+        ]
+    },
+    "点击家园": {
+        "recognition": "TemplateMatch",
+        "template": "jiayuan/jiayuan.png",
+        "roi": [
+            977,
+            640,
+            60,
+            46
+        ],
+        "pre_delay": 1000,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "点击回家",
+            "[JumpBack]家园界面-按键失败-点击家园图标"
+        ]
+    },
+    "fuli_qiandao-ocr": {
+        "recognition": "OCR",
+        "expected": [
+            "福利"
+        ],
+        "roi": [
+            1,
+            112,
+            72,
+            65
+        ],
+        "pre_wait_freezes": 1,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "dakaiguaguale",
+            "[JumpBack]福利界面-按键失败-点击福利图标"
+        ]
+    },
+    "打开大地图_传送两界山": {
+        "recognition": "ColorMatch",
+        "upper": [
+            135,
+            88,
+            50
+        ],
+        "lower": [
+            130,
+            85,
+            48
+        ],
+        "roi": [
+            1,
+            2,
+            80,
+            82
+        ],
+        "count": 1000,
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "打开大地图成功_传送两界山",
+            "[JumpBack]大地图界面-按键打开失败_点击图标"
+        ]
+    },
+    "传送长安城_69副本": {
+        "recognition": "OCR",
+        "expected": [
+            "长安城",
+            "长",
+            "安"
+        ],
+        "roi": [
+            250,
+            50,
+            850,
+            620
+        ],
+        "pre_delay": 1000,
+        "action": "Click",
+        "post_delay": 3000,
+        "next": []
+    },
+    "mijing_renwu": {
+        "next": [
+            "识别位置-东海湾-秘境-过渡",
+            "识别位置-东海湾-秘境",
+            "[JumpBack]dakai_map",
+            "[JumpBack]panduan_zhujiemian"
+        ]
+    },
+    "识别位置-东海湾-秘境-过渡": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zonghe/chenghao.png",
+                    "zonghe/jiahao.png"
+                ],
+                "roi": [
+                    1206,
+                    637,
+                    66,
+                    57
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "创建队伍"
+                ],
+                "roi": [
+                    85,
+                    632,
+                    188,
+                    60
+                ]
+            }
+        ],
+        "next": [
+            "识别位置-东海湾-秘境",
+            "[JumpBack]dakai_map"
+        ]
+    },
+    "close_exit_confirm_mac": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/exit_confirm.png"
+        ],
+        "roi": [
+            246,
+            398,
+            791,
+            200
+        ],
+        "green_mask": true,
+        "action": "Click",
+        "post_wait_freezes": 200,
+        "post_delay": 500
+    },
+    "打造-购买材料-点击返回": {
         "recognition": "TemplateMatch",
         "template": [
             "zonghe/guanbi1.png",
@@ -1292,8 +2949,82 @@
             "zonghe/guanbi6.png",
             "zonghe/guanbi7.png"
         ],
+        "roi": [
+            1050,
+            0,
+            230,
+            100
+        ],
         "pre_delay": 500,
         "action": "Click",
         "post_delay": 1000
+    },
+    "returnmain": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/guanbi1.png",
+            "zonghe/guanbi2.png",
+            "zonghe/guanbi3.png",
+            "zonghe/guanbi4.png",
+            "zonghe/guanbi5.png",
+            "zonghe/guanbi6.png",
+            "zonghe/guanbi7.png"
+        ],
+        "roi": [
+            1050,
+            0,
+            230,
+            100
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000
+    },
+    "returnmain1": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/guanbi1.png",
+            "zonghe/guanbi2.png",
+            "zonghe/guanbi3.png",
+            "zonghe/guanbi4.png",
+            "zonghe/guanbi5.png",
+            "zonghe/guanbi6.png",
+            "zonghe/guanbi7.png"
+        ],
+        "roi": [
+            1050,
+            0,
+            230,
+            100
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000
+    },
+    "panduan_zhujiemian_ks": {
+        "inverse": true,
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/jiahao.png",
+            "zonghe/chenghao.png",
+            "zonghe/baoguo.png",
+            "zonghe/baoguo_man.png"
+        ],
+        "roi": [
+            1197,
+            540,
+            78,
+            157
+        ],
+        "pre_delay": 1000,
+        "action": "Click",
+        "target": [
+            1098,
+            19,
+            45,
+            45
+        ],
+        "post_wait_freezes": 200,
+        "post_delay": 500
     }
 }
