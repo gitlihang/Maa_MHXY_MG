@@ -28,9 +28,9 @@
 
 `MAA_MHXY_MG` 是一个面向“梦手”的项目，依托 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 实现。
 
-项目适合已经在 PC 模拟器环境中游玩的用户，用来减少重复点击和日常任务的手动操作成本。
 
-> 重点说明：由于 69 级以下账号操作逻辑不同，部分功能对低等级小号的适配仍存在限制。
+
+> 重点说明：由于 69 级以下账号操作逻辑不同，部分功能对低等级小号的适配仍存在兼容性不足。
 
 
 ## 功能列表
@@ -52,7 +52,7 @@
 本项目由 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 提供强力支持，感谢所有参与和支持项目开发的贡献者！
 
 - [MaaFramework](https://github.com/MaaXYZ/MaaFramework)
-- [MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia)
+- [MFAAvalonia](https://github.com/MaaXYZ/MFAAvalonia)
 - [MXU](https://github.com/MistEO/MXU)
 
 
