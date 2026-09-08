@@ -87,6 +87,7 @@
         "action": "Click",
         "post_delay": 1500,
         "next": [
+            "[JumpBack]关闭整点活动弹窗",
             "打造-打开成功"
         ]
     },
