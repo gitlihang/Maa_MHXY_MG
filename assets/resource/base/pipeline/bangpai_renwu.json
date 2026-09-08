@@ -130,22 +130,6 @@
             "[JumpBack]bangpai_huodong_down"
         ]
     },
-    "活动-帮派任务-已完成": {
-        "recognition": "OCR",
-        "expected": [
-            "请下周继续"
-        ],
-        "threshold": 0.9,
-        "roi": [
-            400,
-            241,
-            482,
-            246
-        ],
-        "next": [
-            "panduan_zhujiemian"
-        ]
-    },
     "活动-帮派任务-开始": {
         "recognition": "And",
         "all_of": [
@@ -234,6 +218,22 @@
             "[JumpBack]帮派任务-完成",
             "[JumpBack]帮派任务单次点击",
             "[JumpBack]帮派-间隔20秒-最大10分钟",
+            "panduan_zhujiemian"
+        ]
+    },
+    "活动-帮派任务-已完成": {
+        "recognition": "OCR",
+        "expected": [
+            "请下周继续"
+        ],
+        "threshold": 0.9,
+        "roi": [
+            400,
+            241,
+            482,
+            246
+        ],
+        "next": [
             "panduan_zhujiemian"
         ]
     },
