@@ -17,7 +17,7 @@
             66,
             57
         ],
-        "post_delay": 3000,
+        "post_delay": 500,
         "next": [
             "识别位置-长安城-副本",
             "[JumpBack]panduan_zhujiemian_ks",
@@ -86,7 +86,6 @@
         ],
         "post_delay": 1000
     },
-    "55": {},
     "打开大地图成功_传送长安城_69副本": {
         "recognition": "TemplateMatch",
         "template": [
@@ -111,7 +110,7 @@
             "zonghe/tab_changancheng2.png",
             "zonghe/tab_changancheng3.png"
         ],
-        "pre_delay": 1000,
+        "pre_delay": 500,
         "action": "Click",
         "post_delay": 1000
     },
@@ -126,7 +125,7 @@
             117,
             31
         ],
-        "post_delay": 3000,
+        "post_delay": 1000,
         "next": [
             "打开小地图_百晓仙子"
         ]
@@ -215,7 +214,7 @@
             356
         ],
         "action": "Click",
-        "post_delay": 200,
+        "post_delay": 500,
         "next": [
             "选择侠士副本"
         ]
@@ -232,7 +231,7 @@
             42
         ],
         "action": "Click",
-        "post_delay": 200,
+        "post_delay": 500,
         "next": [
             "进入50级侠士副本"
         ]
