@@ -134,7 +134,8 @@
                 ]
             }
         ],
-        "post_delay": 500,
+        "post_delay": 800,
+        "post_wait_freezes": 500,
         "next": [
             "活动-召唤灵梦境-开始",
             "活动-召唤灵梦境-未到开始时间",

@@ -96,7 +96,8 @@
                 ]
             }
         ],
-        "post_delay": 500,
+        "post_delay": 800,
+        "post_wait_freezes": 500,
         "next": [
             "活动-迷阵-开始",
             "活动-迷阵-已完成",

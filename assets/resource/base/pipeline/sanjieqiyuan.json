@@ -133,7 +133,8 @@
                 ]
             }
         ],
-        "post_delay": 500,
+        "post_delay": 800,
+        "post_wait_freezes": 500,
         "next": [
             "活动-三界奇缘-开始",
             "活动-三界奇缘-未到开始时间",

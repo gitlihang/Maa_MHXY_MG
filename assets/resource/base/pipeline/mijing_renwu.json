@@ -626,7 +626,8 @@
                 ]
             }
         ],
-        "post_delay": 500,
+        "post_delay": 800,
+        "post_wait_freezes": 500,
         "next": [
             "活动-秘境降妖-开始",
             "[JumpBack]baotu_huodong_down"
