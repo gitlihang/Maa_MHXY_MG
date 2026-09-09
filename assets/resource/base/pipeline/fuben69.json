@@ -294,7 +294,8 @@
             "[JumpBack]推荐好友信息",
             "[JumpBack]关闭福利弹窗",
             "[JumpBack]关闭师门弹窗",
-            "[JumpBack]任务栏切换为任务"
+            "[JumpBack]任务栏切换为任务",
+            "[JumpBack]关闭任务界面"
         ]
     },
     "测试-进入50级侠士副本": {
@@ -307,7 +308,8 @@
             "[JumpBack]推荐好友信息",
             "[JumpBack]关闭福利弹窗",
             "[JumpBack]关闭师门弹窗",
-            "[JumpBack]任务栏切换为任务"
+            "[JumpBack]任务栏切换为任务",
+            "[JumpBack]关闭任务界面"
         ]
     },
     "50侠士-副本完成-退出": {
@@ -576,7 +578,8 @@
             "[JumpBack]推荐好友信息",
             "[JumpBack]关闭福利弹窗",
             "[JumpBack]关闭师门弹窗",
-            "[JumpBack]任务栏切换为任务"
+            "[JumpBack]任务栏切换为任务",
+            "[JumpBack]关闭任务界面"
         ]
     },
     "50普通-1-副本完成-退出": {
@@ -712,7 +715,8 @@
             "[JumpBack]推荐好友信息",
             "[JumpBack]关闭福利弹窗",
             "[JumpBack]关闭师门弹窗",
-            "[JumpBack]任务栏切换为任务"
+            "[JumpBack]任务栏切换为任务",
+            "[JumpBack]关闭任务界面"
         ]
     },
     "测试-进入50级普通副本-2": {
@@ -725,7 +729,8 @@
             "[JumpBack]推荐好友信息",
             "[JumpBack]关闭福利弹窗",
             "[JumpBack]关闭师门弹窗",
-            "[JumpBack]任务栏切换为任务"
+            "[JumpBack]任务栏切换为任务",
+            "[JumpBack]关闭任务界面"
         ]
     },
     "50普通-2-副本完成-退出": {

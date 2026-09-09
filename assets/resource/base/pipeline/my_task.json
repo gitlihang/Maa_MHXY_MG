@@ -419,6 +419,27 @@
         "action": "Click",
         "post_delay": 500
     },
+    "关闭任务界面": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "bangpairenwu/renwu_jiemian_logo.png"
+        ],
+        "roi": [
+            61,
+            0,
+            249,
+            208
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "target": [
+            1117,
+            38,
+            38,
+            40
+        ],
+        "post_delay": 800
+    },
     "识别拓印_停止": {
         "focus": {
             "Node.Recognition.Succeeded": "遇见拓印，停止所有任务"
