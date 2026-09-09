@@ -107,7 +107,8 @@
     "click_map_yunleyou": {
         "recognition": "OCR",
         "expected": [
-            "云乐游"
+            "云乐游",
+            "云乐"
         ],
         "roi": [
             500,
