@@ -83,26 +83,27 @@ class countGlobal(CustomAction):
             return CustomAction.RunResult(success=True)
         # 获取全局本地参数
 
-        count  = LocalStorage.get("task","global_count")
-        # #count的类型
-        # logger.info(f"当前全局计数: {count}")
-        # logger.info(f"当前全局计数类型: {type(count)}")
+        # 原子自增（带实例隔离）：首次进入不会再拿 None 去比较而抛 TypeError，
+        # 多实例并发也不会互相覆盖。返回的是自增“之后”的计数。
+        count = LocalStorage.increment("task", "global_count", 1, context=context)
+        if count is None:
+            logger.error("全局计数写入失败，本次不计数")
+            return CustomAction.RunResult(success=True)
+
         #获取传参
         target_count = argv_dict.get("target_count", 0)
         next_task = argv_dict.get("nextTask", "")
         LoopNode = argv_dict.get("LoopNode","")
-        if count < target_count:
+        # count 已自增，故 <= target_count 等价于原来的“自增前 < target_count”
+        if count <= target_count:
             logger.info(f"当前计数: {count}, 目标计数: {target_count}")
-            new_count= count+1
-            LocalStorage.set("task","global_count",new_count)
-            # LocalStorage.write(loc_count)
             #在本次循环需要执行的动作
             context.run_action(LoopNode)
             return CustomAction.RunResult(success=True)
 
         # 达到目标次数时，执行下一任务节点
         logger.info(f"计数已达标，执行下一任务: {next_task}")
-        LocalStorage.set("task","global_count",0)
+        LocalStorage.set("task", "global_count", 0, context=context)
         context.run_task(next_task)
 
         return CustomAction.RunResult(success=True)

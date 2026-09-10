@@ -21,12 +21,15 @@ class craftName(CustomAction):
             image
         )
         # 判断识别结果
-        if reco_result and reco_result.hit:
-            best_result = reco_result.best_result
-            
-            DZ = best_result.text
-        # 保存需要打造的装备名字
-        LocalStorage.set("craftName", "craftName", DZ)
+        if not (reco_result and reco_result.hit):
+            # 原实现在未命中时 DZ 未定义，会直接抛 NameError 让动作失败
+            logger.error("未能识别到装备名称，跳过保存")
+            return CustomAction.RunResult(success=True)
+
+        # 保存需要打造的装备名字（带实例隔离）
+        LocalStorage.set(
+            "craftName", "craftName", reco_result.best_result.text, context=context
+        )
         return CustomAction.RunResult(success=True)
     
 @AgentServer.custom_action("CraftGear")
@@ -40,8 +43,8 @@ class CraftGear(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
         
-        # 获取需要打造的装备名称
-        DZ = LocalStorage.get("craftName", "craftName")
+        # 获取需要打造的装备名称（带实例隔离，取不到时给空串而不是 None）
+        DZ = LocalStorage.get("craftName", "craftName", "", context=context)
         
         """
         根据需要打造的装备名称，进行分类划分，50级武器、60级武器、50级防具、60级防具并输出类型
