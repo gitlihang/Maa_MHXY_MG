@@ -1,0 +1,10 @@
+{
+    "task": [
+        {
+            "name": "特殊助战",
+            "entry": "TS_zhuzhan",
+            "description": "伽蓝助战，每日聊天"
+        }
+    ],
+    "option": {}
+}

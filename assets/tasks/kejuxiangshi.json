@@ -1,0 +1,82 @@
+{
+    "task": [
+        {
+            "name": "科举乡试",
+            "entry": "kejuxiangshi",
+            "option": [
+                "是否使用Ai进行答题"
+            ],
+            "description": "./docs/description/kejuxiangshi.md"
+        }
+    ],
+    "option": {
+        "是否使用Ai进行答题": {
+            "type": "switch",
+            "default_case": "Yes",
+            "description": "是否使用ai答题",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "活动-科举乡试-进入答题界面": {
+                            "next": [
+                                "活动-科举乡试-结束-图片",
+                                "活动-科举乡试-结束ocr",
+                                "[JumpBack]活动-科举乡试-开始答题_普通"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "description": "支持OpenaiAPI规范的模型",
+                    "pipeline_override": {
+                        "活动-科举乡试-进入答题界面": {
+                            "next": [
+                                "活动-科举乡试-结束-图片",
+                                "活动-科举乡试-结束ocr",
+                                "[JumpBack]活动-科举乡试-开始答题API"
+                            ]
+                        }
+                    },
+                    "option": [
+                        "Seed_apikey"
+                    ]
+                }
+            ]
+        },
+        "Seed_apikey": {
+            "type": "input",
+            "description": "支持OpenaiAPI规范的模型",
+            "inputs": [
+                {
+                    "name": "apikey",
+                    "pipeline_type": "string",
+                    "default": "",
+                    "description": "API密钥"
+                },
+                {
+                    "name": "url",
+                    "pipeline_type": "string",
+                    "default": "",
+                    "description": "url链接"
+                },
+                {
+                    "name": "model",
+                    "pipeline_type": "string",
+                    "default": "",
+                    "description": "模型"
+                }
+            ],
+            "pipeline_override": {
+                "活动-科举乡试-开始答题API": {
+                    "attach": {
+                        "apikey": "{apikey}",
+                        "url": "{url}",
+                        "model": "{model}"
+                    }
+                }
+            }
+        }
+    }
+}

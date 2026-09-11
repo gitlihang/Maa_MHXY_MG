@@ -1,0 +1,54 @@
+{
+    "task": [
+        {
+            "name": "宠物祈福",
+            "entry": "chongwuqifu",
+            "option": [
+                "是否使用自选宠物祈福"
+            ],
+            "description": "默认为第一个宠物进行祈福,或者手动输入要祈福的宠物名称"
+        }
+    ],
+    "option": {
+        "是否使用自选宠物祈福": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "进入选择召唤零界面": {
+                            "next": [
+                                "用户选择需要祈福的召唤灵",
+                                "[JumpBack]祈福-选择宠物-向上滑动"
+                            ]
+                        }
+                    },
+                    "option": [
+                        "祈福宠物名称"
+                    ]
+                }
+            ]
+        },
+        "祈福宠物名称": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "祈福宠物名称",
+                    "pipeline_type": "string",
+                    "default": ""
+                }
+            ],
+            "pipeline_override": {
+                "用户选择需要祈福的召唤灵": {
+                    "expected": [
+                        "{祈福宠物名称}"
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "task": [
+        {
+            "name": "工坊考古",
+            "entry": "gongfang_kaogu",
+            "option": [
+                "考古次数",
+                "是否售卖真品"
+            ],
+            "description": "./docs/description/gongfang_kaogu.md"
+        }
+    ],
+    "option": {
+        "考古次数": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "考古几轮",
+                    "pipeline_type": "int",
+                    "default": "1"
+                }
+            ],
+            "pipeline_override": {
+                "考古次数": {
+                    "max_hit": "{考古几轮}"
+                }
+            }
+        },
+        "是否售卖真品": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "古董售卖-界面": {}
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "古董售卖-界面": {
+                            "next": [
+                                "古董售卖-售卖完成",
+                                "古董售卖-界面-非真品售卖完成",
+                                "[JumpBack]古董售卖-界面-点击售卖"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

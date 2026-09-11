@@ -1,0 +1,10 @@
+{
+    "task": [
+        {
+            "name": "停止游戏",
+            "entry": "stop",
+            "description": "停止游戏,受资源类型控制"
+        }
+    ],
+    "option": {}
+}

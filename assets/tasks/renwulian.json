@@ -1,0 +1,10 @@
+{
+    "task": [
+        {
+            "name": "任务链（高级功能）",
+            "entry": "renwulian",
+            "description": "./docs/description/renwulian.md"
+        }
+    ],
+    "option": {}
+}

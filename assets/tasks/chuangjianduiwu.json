@@ -1,0 +1,67 @@
+{
+    "task": [
+        {
+            "name": "创建队伍",
+            "entry": "chuangjianduiwu",
+            "option": [
+                "创建（副本/捉鬼）任务",
+                "任务描述(用户输入)"
+            ],
+            "description": "./docs/description/chuangjianduiwu.md"
+        }
+    ],
+    "option": {
+        "创建（副本/捉鬼）任务": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "创建520副本任务",
+                    "description": "影响等级区间",
+                    "pipeline_override": {
+                        "队伍-点击日常任务": {
+                            "next": [
+                                "队伍-点击副本任务520"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "创建320副本任务",
+                    "description": "影响等级区间",
+                    "pipeline_override": {
+                        "队伍-点击日常任务": {
+                            "next": [
+                                "队伍-点击副本任务320"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "创建捉鬼任务",
+                    "pipeline_override": {
+                        "队伍-点击日常任务": {
+                            "next": [
+                                "队伍-点击捉鬼任务"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "任务描述(用户输入)": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "任务描述",
+                    "pipeline_type": "string",
+                    "default": ""
+                }
+            ],
+            "pipeline_override": {
+                "队伍-任务描述-用户输入": {
+                    "input_text": "{任务描述}"
+                }
+            }
+        }
+    }
+}

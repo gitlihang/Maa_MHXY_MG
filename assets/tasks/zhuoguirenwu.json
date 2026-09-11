@@ -1,0 +1,99 @@
+{
+    "task": [
+        {
+            "name": "捉鬼任务-无限/手动选择执行几轮",
+            "entry": "zhuoguirenwu",
+            "option": [
+                "（开启/关闭）人员检测-（是否）进入轮次选择"
+            ],
+            "description": "./docs/description/zhuoguirenwu.md"
+        }
+    ],
+    "option": {
+        "（开启/关闭）人员检测-（是否）进入轮次选择": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "开启人员检测-不进入轮次选择",
+                    "pipeline_override": {
+                        "抓鬼-关闭组队界面": {}
+                    }
+                },
+                {
+                    "name": "开启人员检测-进入轮次选择",
+                    "pipeline_override": {
+                        "抓鬼-关闭组队界面": {
+                            "next": [
+                                "抓鬼轮次计算-max",
+                                "捉鬼-结束"
+                            ]
+                        }
+                    },
+                    "option": [
+                        "抓鬼轮次输入2"
+                    ]
+                },
+                {
+                    "name": "关闭人员检测-进入轮次选择",
+                    "pipeline_override": {
+                        "抓鬼一轮完成": {
+                            "next": [
+                                "[JumpBack]抓鬼一轮完成-再次点击确定",
+                                "抓鬼轮次计算-max",
+                                "捉鬼-结束"
+                            ]
+                        }
+                    },
+                    "option": [
+                        "抓鬼轮次输入2"
+                    ]
+                },
+                {
+                    "name": "关闭人员检测-不进入轮次选择",
+                    "pipeline_override": {
+                        "抓鬼一轮完成": {
+                            "next": [
+                                "钟馗-捉鬼任务-循环",
+                                "[JumpBack]抓鬼一轮完成-再次点击确定"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "抓鬼轮次输入": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "抓鬼轮数",
+                    "pipeline_type": "int",
+                    "default": "2",
+                    "verify": "^(0|[1-9]\\d*)$"
+                }
+            ],
+            "pipeline_override": {
+                "抓鬼轮数": {
+                    "custom_action_param": {
+                        "target_count": "{抓鬼轮数}"
+                    }
+                }
+            }
+        },
+        "抓鬼轮次输入2": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "抓鬼轮数",
+                    "pipeline_type": "int",
+                    "default": "2",
+                    "verify": "^(0|[1-9]\\d*)$"
+                }
+            ],
+            "pipeline_override": {
+                "抓鬼轮次计算-max": {
+                    "max_hit": "{抓鬼轮数}"
+                }
+            }
+        }
+    }
+}

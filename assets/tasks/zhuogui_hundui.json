@@ -1,0 +1,48 @@
+{
+    "task": [
+        {
+            "name": "捉鬼（混队）",
+            "entry": "zhuogui_hundui",
+            "description": "./docs/description/zhuogui_hundui.md",
+            "option": [
+                "捉鬼混队"
+            ]
+        }
+    ],
+    "option": {
+        "捉鬼混队": {
+            "type": "input",
+            "inputs": [
+                {
+                    "name": "双倍点数",
+                    "description": "建议为0，详情请看任务说明",
+                    "pipeline_type": "int",
+                    "default": "0"
+                },
+                {
+                    "name": "小时",
+                    "description": "输入范围00-23",
+                    "pipeline_type": "int",
+                    "default": "",
+                    "verify": "^(2[0-3]|[01]?\\d)$"
+                },
+                {
+                    "name": "分钟",
+                    "description": "输入范围00-59",
+                    "pipeline_type": "int",
+                    "default": "",
+                    "verify": "^[0-5]?\\d$"
+                }
+            ],
+            "pipeline_override": {
+                "混队-抓鬼-判断结束条件": {
+                    "attach": {
+                        "User_points": "{双倍点数}",
+                        "Uset_time_HH": "{小时}",
+                        "Uset_time_MM": "{分钟}"
+                    }
+                }
+            }
+        }
+    }
+}

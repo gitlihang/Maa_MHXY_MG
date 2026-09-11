@@ -1,0 +1,40 @@
+{
+    "task": [
+        {
+            "name": "运镖普通",
+            "entry": "yunbiao_renwu2",
+            "option": [
+                "是否检测活力到50"
+            ],
+            "description": "检查活力是否到50，建议优先选择不检测，请自己排序任务，把运镖放在后边"
+        }
+    ],
+    "option": {
+        "是否检测活力到50": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "description": "建议选择不检测",
+                    "pipeline_override": {
+                        "活动-运镖": {
+                            "next": [
+                                "活动-运镖-点击日常活动"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "活动-运镖": {
+                            "next": [
+                                "活动-运镖-检查活跃度agent"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

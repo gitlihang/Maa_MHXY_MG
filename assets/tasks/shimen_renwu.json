@@ -1,0 +1,35 @@
+{
+    "task": [
+        {
+            "name": "师门任务",
+            "entry": "shimen_renwu",
+            "description": "./docs/description/shimen_renwu.md",
+            "option": [
+                "师门任务模式"
+            ]
+        }
+    ],
+    "option": {
+        "师门任务模式": {
+            "type": "switch",
+            "description": "是否使用手动师门任务",
+            "default_case": "No",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "shimen_renwu": {
+                            "next": [
+                                "shimen_renwu_new"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

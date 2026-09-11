@@ -1,0 +1,32 @@
+{
+    "task": [
+        {
+            "name": "福利签到",
+            "entry": "fuli_qiandao",
+            "option": [
+                "是否开启刷新"
+            ]
+        }
+    ],
+    "option": {
+        "是否开启刷新": {
+            "description": "是否开启刮刮乐未有高价值物品时候点击刷新一次，高价值包括打造石、金柳露及更高价值物品",
+            "type": "switch",
+            "default_case": "Yes",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "刮刮乐识别是否有高价值物品": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                }
+            ]
+        }
+    }
+}

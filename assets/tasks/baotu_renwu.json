@@ -1,0 +1,10 @@
+{
+    "task": [
+        {
+            "name": "宝图任务",
+            "entry": "baotu_renwu",
+            "description": "打宝图任务"
+        }
+    ],
+    "option": {}
+}

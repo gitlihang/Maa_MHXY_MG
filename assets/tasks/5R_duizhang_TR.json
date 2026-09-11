@@ -1,0 +1,10 @@
+{
+    "task": [
+        {
+            "name": "队长踢人",
+            "entry": "5R_duizhang_TR",
+            "description": "踢出全部队员并退出队伍"
+        }
+    ],
+    "option": {}
+}

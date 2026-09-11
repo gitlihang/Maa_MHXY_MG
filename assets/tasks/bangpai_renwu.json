@@ -1,0 +1,10 @@
+{
+    "task": [
+        {
+            "name": "帮派任务",
+            "entry": "bangpai_renwu",
+            "description": "新任务，手动"
+        }
+    ],
+    "option": {}
+}

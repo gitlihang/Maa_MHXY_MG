@@ -1,0 +1,10 @@
+{
+    "task": [
+        {
+            "name": "家园整理",
+            "entry": "jiayuan_zhengli",
+            "description": "进行，大扫除、恢复活力及宠物喂养（默认第一个宠物）"
+        }
+    ],
+    "option": {}
+}

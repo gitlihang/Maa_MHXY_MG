@@ -1,0 +1,76 @@
+{
+    "task": [
+        {
+            "name": "整理背包",
+            "entry": "zhengli_baibao",
+            "option": [
+                "使用及清理列表"
+            ],
+            "description": "默认整理全部，可以手动选择关闭。"
+        }
+    ],
+    "option": {
+        "使用及清理列表": {
+            "type": "checkbox",
+            "description": "请选择需要整理的材料",
+            "default_case": [
+                "红罗羹",
+                "绿芦羹",
+                "心魔宝珠",
+                "阵法卷",
+                "秘境材料",
+                "过期物品"
+            ],
+            "cases": [
+                {
+                    "name": "红罗羹",
+                    "pipeline_override": {
+                        "使用红罗羹": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "绿芦羹",
+                    "pipeline_override": {
+                        "使用绿芦羹": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "心魔宝珠",
+                    "pipeline_override": {
+                        "使用心魔宝珠": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "阵法卷",
+                    "pipeline_override": {
+                        "合成阵法": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "秘境材料",
+                    "pipeline_override": {
+                        "使用秘境材料": {
+                            "enabled": true
+                        }
+                    }
+                },
+                {
+                    "name": "过期物品",
+                    "pipeline_override": {
+                        "使用过期物品": {
+                            "enabled": true
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "task": [
+        {
+            "name": "三界奇缘",
+            "entry": "sanjieqiyuan",
+            "option": [
+                "是否选择题库"
+            ]
+        }
+    ],
+    "option": {
+        "是否选择题库": {
+            "type": "switch",
+            "default_case": "Yes",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "活动-三界奇缘-进入答题界面": {
+                            "next": [
+                                "活动-三界奇缘-结束",
+                                "主界面",
+                                "[JumpBack]清理主界面使用-关闭",
+                                "[JumpBack]活动-三界奇缘-开始答题",
+                                "[JumpBack]panduan_zhujiemian"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "活动-三界奇缘-进入答题界面": {
+                            "next": [
+                                "活动-三界奇缘-结束",
+                                "主界面",
+                                "[JumpBack]清理主界面使用-关闭",
+                                "[JumpBack]活动-三界奇缘-开始答题_agent",
+                                "[JumpBack]panduan_zhujiemian"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
