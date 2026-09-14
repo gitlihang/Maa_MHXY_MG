@@ -19,9 +19,38 @@
         ],
         "post_delay": 500,
         "next": [
+            "已在50级侠士副本-过渡",
             "识别位置-长安城-副本",
             "[JumpBack]panduan_zhujiemian_ks",
             "[JumpBack]打开大地图_69副本"
+        ]
+    },
+    "已在50级侠士副本-过渡": {
+        "recognition": "And",
+        "all_of": [
+            {
+                "recognition": "OCR",
+                "expected": "因缘绘",
+                "roi": [
+                    502,
+                    53,
+                    94,
+                    42
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": ".*侠士",
+                "roi": [
+                    1037,
+                    174,
+                    210,
+                    41
+                ]
+            }
+        ],
+        "next": [
+            "进入50级侠士副本-成功"
         ]
     },
     "打开大地图_69副本": {
