@@ -52,7 +52,7 @@
         },
         "秘境-海底-结束关卡": {
             "type": "select",
-            "description": "请自行判断退出关卡，只有在秘境自动停止到的关卡在可以实现结束。例如：在24关需要点击进入战斗等。",
+            "description": "请自行判断退出关卡，只有在秘境自动停止到的关卡在可以最好实现结束。例如：在24关需要点击进入战斗等。",
             "default_case": "不提前退出",
             "cases": [
                 {
@@ -60,9 +60,9 @@
                     "description": "推荐89/115使用",
                     "pipeline_override": {
                         "海底秘境-指定关卡结束任务": {
-                            "expected": [
-                                "第25关"
-                            ]
+                            "custom_recognition_param": {
+                                "expression": "{海底秘境-关卡识别}>=25"
+                            }
                         }
                     }
                 },
@@ -70,9 +70,9 @@
                     "name": "第24关",
                     "pipeline_override": {
                         "海底秘境-指定关卡结束任务": {
-                            "expected": [
-                                "第24关"
-                            ]
+                            "custom_recognition_param": {
+                                "expression": "{海底秘境-关卡识别}>=24"
+                            }
                         }
                     }
                 },
@@ -80,9 +80,9 @@
                     "name": "第21关",
                     "pipeline_override": {
                         "海底秘境-指定关卡结束任务": {
-                            "expected": [
-                                "第21关"
-                            ]
+                            "custom_recognition_param": {
+                                "expression": "{海底秘境-关卡识别}>=21"
+                            }
                         }
                     }
                 },
@@ -91,9 +91,9 @@
                     "description": "69级使用",
                     "pipeline_override": {
                         "海底秘境-指定关卡结束任务": {
-                            "expected": [
-                                "第18关"
-                            ]
+                            "custom_recognition_param": {
+                                "expression": "{海底秘境-关卡识别}>=18"
+                            }
                         }
                     }
                 },
@@ -101,9 +101,9 @@
                     "name": "不提前退出",
                     "pipeline_override": {
                         "海底秘境-指定关卡结束任务": {
-                            "expected": [
-                                "第60关"
-                            ]
+                            "custom_recognition_param": {
+                                "expression": "{海底秘境-关卡识别}>=60"
+                            }
                         }
                     }
                 }
@@ -117,9 +117,9 @@
                     "name": "第25关",
                     "pipeline_override": {
                         "日月之井-指定关卡结束任务": {
-                            "expected": [
-                                "第25关"
-                            ]
+                            "custom_recognition_param": {
+                                "expression": "{日月之井-关卡识别}>=25"
+                            }
                         }
                     }
                 },
@@ -127,9 +127,9 @@
                     "name": "第24关",
                     "pipeline_override": {
                         "日月之井-指定关卡结束任务": {
-                            "expected": [
-                                "第24关"
-                            ]
+                            "custom_recognition_param": {
+                                "expression": "{日月之井-关卡识别}>=24"
+                            }
                         }
                     }
                 }

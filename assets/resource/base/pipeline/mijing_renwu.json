@@ -215,23 +215,40 @@
             "[JumpBack]战斗中-等待20秒"
         ]
     },
-    "海底秘境-指定关卡结束任务": {
-        "focus": {
-            "Node.Recognition.Succeeded": "{name}"
-        },
+    "mm": {
+        "next": [
+            "[JumpBack]海底秘境-关闭进入战斗",
+            "海底秘境-指定关卡结束任务",
+            "[JumpBack]秘境-点击进入战斗",
+            "[JumpBack]海底秘境-点击关卡",
+            "mijing_tongguan",
+            "mijing_shibai",
+            "[JumpBack]战斗中-等待20秒"
+        ]
+    },
+    "海底秘境-关卡识别": {
         "recognition": "OCR",
-        "expected": [
-            "第25关"
-        ],
+        "expected": [],
         "roi": [
             1014,
             209,
             101,
             109
-        ],
+        ]
+    },
+    "海底秘境-指定关卡结束任务": {
+        "focus": {
+            "Node.Recognition.Succeeded": "{name}"
+        },
+        "recognition": "Custom",
+        "custom_recognition": "ExpressionRecognition",
+        "custom_recognition_param": {
+            "expression": "{海底秘境-关卡识别}>=25"
+        },
         "next": [
             "[JumpBack]清理主界面使用-关闭",
             "秘境-点击离开",
+            "[JumpBack]战斗中-等待5秒",
             "[JumpBack]panduan_zhujiemian"
         ]
     },
@@ -433,10 +450,7 @@
             35
         ]
     },
-    "日月之井-指定关卡结束任务": {
-        "focus": {
-            "Node.Recognition.Succeeded": "{name}"
-        },
+    "日月之井-关卡识别": {
         "recognition": "OCR",
         "expected": [],
         "roi": [
@@ -444,10 +458,21 @@
             169,
             115,
             74
-        ],
+        ]
+    },
+    "日月之井-指定关卡结束任务": {
+        "focus": {
+            "Node.Recognition.Succeeded": "{name}"
+        },
+        "recognition": "Custom",
+        "custom_recognition": "ExpressionRecognition",
+        "custom_recognition_param": {
+            "expression": "{日月之井-关卡识别}>=25"
+        },
         "next": [
             "[JumpBack]清理主界面使用-关闭",
             "秘境-点击离开",
+            "[JumpBack]战斗中-等待5秒",
             "[JumpBack]panduan_zhujiemian"
         ]
     },

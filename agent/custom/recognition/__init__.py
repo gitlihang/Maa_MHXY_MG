@@ -7,3 +7,4 @@ from .AIAnswer import *
 from .bangpai_renwu import *
 from .shimen_renwu import *
 from .zhuogui_hundui import *
+from .ExpressionRecognition import *
