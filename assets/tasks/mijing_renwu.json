@@ -6,7 +6,7 @@
             "option": [
                 "海底秘境模式"
             ],
-            "description": "1.模式选择海底秘境vs日月之井。2.结束关卡选择。3.请自行判断退出关卡，只有在秘境自动停止到的关卡在可以实现结束。例如：在25关需要点击进入战斗等。请查看每个选项的说明"
+            "description": "./docs/description/mijing_renwu.md"
         }
     ],
     "option": {
