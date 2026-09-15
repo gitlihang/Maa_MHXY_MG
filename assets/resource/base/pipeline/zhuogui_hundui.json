@@ -474,7 +474,10 @@
             "User_points": 0,
             "Uset_time_HH": 23,
             "Uset_time_MM": 30
-        }
+        },
+        "next": [
+            "panduan_zhujiemian"
+        ]
     },
     "混队-抓鬼-双倍点数领取": {
         "recognition": "OCR",

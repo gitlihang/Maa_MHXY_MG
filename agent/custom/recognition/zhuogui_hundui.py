@@ -89,7 +89,7 @@ class zhuogui_hundui(CustomRecognition):
             logger.info(f"未满足任务结束条件，领取双倍点数，并继续开始捉鬼混队")
             context.run_task("tuichuduiwu")
             time.sleep(1)
-            context.run_task("zhuogui_hundui")
+            context.override_next("混队-抓鬼-判断结束条件",["zhuogui_hundui"])
             return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="未满足结束条件，继续任务")
 
         # return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="捉鬼任务结束")
