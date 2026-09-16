@@ -210,6 +210,7 @@
             "海底秘境-指定关卡结束任务",
             "[JumpBack]秘境-点击进入战斗",
             "[JumpBack]海底秘境-点击关卡",
+            "[JumpBack]关闭酒店老板弹窗",
             "mijing_tongguan",
             "mijing_shibai",
             "[JumpBack]战斗中-等待20秒"
@@ -221,6 +222,7 @@
             "海底秘境-指定关卡结束任务",
             "[JumpBack]秘境-点击进入战斗",
             "[JumpBack]海底秘境-点击关卡",
+            "[JumpBack]关闭酒店老板弹窗",
             "mijing_tongguan",
             "mijing_shibai",
             "[JumpBack]战斗中-等待20秒"
@@ -251,6 +253,22 @@
             "[JumpBack]战斗中-等待5秒",
             "[JumpBack]panduan_zhujiemian"
         ]
+    },
+    "关闭酒店老板弹窗": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/guanbi1.png",
+            "zonghe/guanbi2.png"
+        ],
+        "roi": [
+            1106,
+            7,
+            77,
+            84
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 500
     },
     "海底秘境-点击关卡": {
         "recognition": "OCR",
@@ -416,6 +434,7 @@
             "日月之井-指定关卡结束任务",
             "[JumpBack]秘境-点击进入战斗",
             "[JumpBack]日月之井-点击关卡",
+            "[JumpBack]关闭酒店老板弹窗",
             "日月之井-通关",
             "日月之井-失败",
             "[JumpBack]战斗中-等待20秒"
@@ -426,6 +445,7 @@
             "日月之井-指定关卡结束任务",
             "[JumpBack]秘境-点击进入战斗",
             "[JumpBack]日月之井-点击关卡",
+            "[JumpBack]关闭酒店老板弹窗",
             "日月之井-通关",
             "日月之井-失败",
             "[JumpBack]战斗中-等待20秒"
