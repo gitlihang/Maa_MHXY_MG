@@ -43,6 +43,27 @@ def calculate_aspect_ratio(width: int, height: int) -> float:
     return width / float(height)
 
 
+def _query_device_size(controller) -> str | None:
+    """
+    通过 adb shell 查询设备端真实分辨率（wm size），仅用于诊断日志。
+
+    MaaFramework 会把原始截图等比缩放到默认短边 720 后再由 cached_image 返回，
+    因此截图尺寸与设备原始分辨率可能不一致，需要额外查询设备端信息辅助定位。
+    """
+    try:
+        controller.post_shell("wm size").wait()
+        output = controller.shell_output
+    except Exception as e:
+        logger.debug(f"查询设备 wm size 失败: {e}")
+        return None
+
+    if not output:
+        return None
+
+    lines = [line.strip() for line in output.strip().splitlines() if line.strip()]
+    return " | ".join(lines)
+
+
 @AgentServer.tasker_sink()
 class AspectRatioChecker(TaskerEventSink):
     """
@@ -100,15 +121,26 @@ class AspectRatioChecker(TaskerEventSink):
         # 检查宽高比（仅横屏 16:9）
         if not is_aspect_ratio_16x9(width, height):
             actual_ratio = calculate_aspect_ratio(width, height)
+
+            # MaaFramework 默认按短边 720 等比缩放截图（ScreenshotTargetShortSide = 720），
+            # cached_image 返回的是缩放后的识别图，所以这里额外查询设备真实分辨率辅助定位。
+            device_size = _query_device_size(controller)
+            extra = (
+                "（提示：该尺寸是 MaaFramework 按默认短边 720 等比缩放后的识别图尺寸，"
+                "比例与设备画面一致，并不等于设备物理分辨率）"
+            )
+            if device_size:
+                extra += f"（设备 wm size: {device_size}）"
+
             if width <= height:
                 logger.error(
-                    f"🚨 当前设备为竖屏或正方形模式 ({width}x{height})，Maa_MHXY_MG 仅支持横屏 16:9 比例，请旋转模拟器或调整分辨率。"
+                    f"🚨 当前设备为竖屏或正方形模式 ({width}x{height})，Maa_MHXY_MG 仅支持横屏 16:9 比例，请旋转模拟器或调整分辨率。{extra}"
                 )
             else:
                 logger.error(
                     f"🚨 分辨率比例不匹配！任务已停止。"
                     f"当前: {width}x{height} (比例: {actual_ratio:.4f})，"
-                    f"Maa_MHXY_MG 仅支持 16:9 比例，请调整为: 2560x1440, 1920x1080, 1600x900, 1280x720(推荐)"
+                    f"Maa_MHXY_MG 仅支持 16:9 比例，请调整为: 2560x1440, 1920x1080, 1600x900, 1280x720(推荐){extra}"
                 )
 
             # 停止任务
