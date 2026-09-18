@@ -13,8 +13,9 @@ class input_node_success_num(CustomAction):
     计数通过 LocalStorage.increment 原子完成：整个"读取-加一-写回"过程持跨进程锁，
     多开时各实例并发自增也不会互相覆盖。
 
-    实例隔离标识优先取 context.tasker.controller.uuid（每个模拟器各不相同），
-    PI_CONTROLLER 拿不到 Adb 设备地址，仅作兜底，详见 utils.get_instance_id。
+    实例隔离标识优先取 context.tasker.controller.info["adb_serial"]（本实例的 adb 地址），
+    因为 controller.uuid 对 Adb 控制器其实是设备 android_id，多开副本常常完全相同；
+    详见 utils.get_instance_id。
     """
     def run(
         self,

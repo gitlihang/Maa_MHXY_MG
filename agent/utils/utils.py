@@ -14,16 +14,27 @@ import tempfile
 # ===== 多实例数据隔离 =====
 # 文档: docs/3.3-ProjectInterfaceV2协议.md -> "Agent 子进程环境变量"
 #
-# 注意：PI_CONTROLLER 只是 interface.json 里"当前选中的那条 controller 数组元素"，
+# 坑 1：PI_CONTROLLER 只是 interface.json 里"当前选中的那条 controller 数组元素"，
 # 对本项目的 Adb 控制器而言它形如 {"name":"ADB","type":"Adb"}，**不包含运行期选中的
-# 模拟器地址**，因此无法区分多开实例（旧实现会把所有实例都归到 ctrl::ADB 上而互相串数据）。
-# 真正可靠的实例标识是 MaaFramework 的控制器 uuid（context.tasker.controller.uuid），
-# 每个模拟器/设备各不相同，所以优先使用它，PI_CONTROLLER 仅作兜底。
+# 模拟器地址**，所以无法区分多开实例（早期实现把所有实例都归到 ctrl::ADB 上而互相串数据）。
+#
+# 坑 2：context.tasker.controller.uuid 同样不能用来区分多开！对 Adb 控制器，MaaFramework
+# 的 uuid 取自 `adb -s <serial> shell settings get secure android_id`
+# （见 MaaAdbControlUnit/General/DeviceInfo.cpp 的 kDefaultUuidArgv），而多开出来的模拟器
+# 副本多是同一镜像克隆，android_id 完全相同 —— 两个实例会算出同一个 key，日志里就会看到
+# 两边在互相递增。
+#
+# 真正唯一的是 controller.info["adb_serial"]（AdbControlUnitMgr::get_info 返回），
+# 即该实例选中的 adb 地址（如 127.0.0.1:16416 / 127.0.0.1:16448），多开必然不同。
 DEFAULT_INSTANCE_ID = "default"
 
 # 只提示一次，避免刷屏
 _FALLBACK_WARNED = False
 _LOCK_WARNED = False
+_INSTANCE_ID_LOGGED = False
+
+# 解析成功后缓存，避免每次读写存储都去问一遍控制器
+_INSTANCE_ID_CACHE: Optional[str] = None
 
 # 抢不到存储锁时最多等待的秒数（超时后退化为无锁执行，保证功能可用）
 LOCK_TIMEOUT_SECONDS = 10.0
@@ -59,17 +70,73 @@ def _warn_fallback(message: str) -> None:
         print(f"[LocalStorage] {message}")
 
 
-def _controller_instance_id(context: Any) -> str:
-    """从 MaaFramework 控制器取设备 uuid，这是区分多开实例的最可靠标识。"""
+def _controller_info(context: Any) -> dict:
+    """取控制器构造信息；Adb 控制器里带 adb_serial，即该实例选中的 adb 地址。"""
+    if context is None:
+        return {}
+    try:
+        info = context.tasker.controller.info
+    except Exception:
+        return {}
+    return info if isinstance(info, dict) else {}
+
+
+def _controller_uuid(context: Any) -> str:
+    """取控制器 uuid。
+
+    对 Adb 控制器它其实是设备 android_id（克隆的多开副本会完全相同），
+    所以只能兜底，不能作为多实例隔离依据。
+    """
     if context is None:
         return ""
     try:
         device_uuid = context.tasker.controller.uuid
     except Exception:
         return ""
-    if not device_uuid:
-        return ""
-    return f"controller::{device_uuid}"
+    return str(device_uuid).strip() if device_uuid else ""
+
+
+def _resolve_instance_id(context: Any):
+    """解析实例标识，返回 (标识, 来源说明)；解析不出时返回 ("", "")。"""
+    info = _controller_info(context)
+    # 1) Adb 控制器：adb_serial 就是本实例连接的设备地址，多开必然不同
+    if str(info.get("type", "")).lower() == "adb":
+        serial = info.get("adb_serial")
+        if serial:
+            return f"adb::{serial}", "controller.info.adb_serial"
+
+    # 2) 兜底：控制器 uuid（Adb 下等同 android_id，多开副本可能重复）
+    device_uuid = _controller_uuid(context)
+    if device_uuid:
+        return f"controller::{device_uuid}", "controller.uuid"
+
+    # 3) 再兜底：PI_CONTROLLER（Adb 模板不含地址，区分能力有限）
+    instance_id = _pi_controller_instance_id()
+    if instance_id:
+        return instance_id, "PI_CONTROLLER"
+
+    return "", ""
+
+
+def _log_instance_id(instance_id: str, source: str) -> None:
+    """只在首次解析成功时打一条，便于多开时对照两个实例的日志。"""
+    global _INSTANCE_ID_LOGGED
+    if _INSTANCE_ID_LOGGED:
+        return
+    _INSTANCE_ID_LOGGED = True
+
+    message = f"存储实例标识: {instance_id}（来源: {source}）"
+    if source == "controller.uuid":
+        message += "；警告：Adb 控制器的 uuid 是设备 android_id，多开副本可能重复"
+    elif source == "PI_CONTROLLER":
+        message += "；警告：该来源无法区分多开实例"
+
+    try:
+        from .logger import logger
+
+        logger.info(message)
+    except Exception:
+        print(f"[LocalStorage] {message}")
 
 
 def _pi_controller_instance_id() -> str:
@@ -105,22 +172,26 @@ def get_instance_id(context: Any = None) -> str:
     """获取当前实例的隔离标识。
 
     优先级：
-    1. context.tasker.controller.uuid —— 每个模拟器/设备唯一，多开时可真正隔离；
-    2. PI_CONTROLLER 环境变量（address / name）；
-    3. DEFAULT_INSTANCE_ID。
+    1. controller.info.adb_serial —— Adb 控制器里就是本实例所选模拟器的 adb 地址
+       （如 127.0.0.1:16416），多开时必然不同，最可靠；
+    2. controller.uuid —— Adb 下实为设备 android_id，多开副本可能相同，仅兜底；
+    3. PI_CONTROLLER 环境变量（address / name）；
+    4. DEFAULT_INSTANCE_ID。
 
     注意：不使用 hash() 作为 key，因其每次进程运行结果不稳定，无法跨实例稳定区分多开。
     """
-    instance_id = _controller_instance_id(context)
-    if instance_id:
-        return instance_id
+    global _INSTANCE_ID_CACHE
+    if _INSTANCE_ID_CACHE:
+        return _INSTANCE_ID_CACHE
 
-    instance_id = _pi_controller_instance_id()
+    instance_id, source = _resolve_instance_id(context)
     if instance_id:
-        if instance_id.startswith("ctrl::"):
+        _INSTANCE_ID_CACHE = instance_id
+        _log_instance_id(instance_id, source)
+        if source == "PI_CONTROLLER" and instance_id.startswith("ctrl::"):
             _warn_fallback(
                 "PI_CONTROLLER 不含设备地址，多开实例会共用存储作用域 "
-                f"({instance_id})；请在自定义动作中传入 context 以启用 controller.uuid 隔离。"
+                f"({instance_id})；请在自定义动作中传入 context 以便按 adb_serial 隔离。"
             )
         return instance_id
 
