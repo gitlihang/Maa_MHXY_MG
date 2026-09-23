@@ -110,6 +110,7 @@
         "next": [
             "整理完成",
             "主界面",
+            "[JumpBack]关闭整点活动弹窗",
             "[JumpBack]使用红罗羹",
             "[JumpBack]使用绿芦羹",
             "[JumpBack]使用心魔宝珠",
@@ -404,7 +405,7 @@
         "pre_delay": 500,
         "action": "Click",
         "repeat": 2,
-        "repeat_delay": 135
+        "repeat_delay": 110
     },
     "使用过期物品-使用": {
         "recognition": "OCR",
