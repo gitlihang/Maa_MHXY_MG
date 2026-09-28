@@ -472,7 +472,9 @@
     },
     "日月之井-关卡识别": {
         "recognition": "OCR",
-        "expected": [],
+        "expected": [
+            "\\d+"
+        ],
         "roi": [
             1012,
             169,
