@@ -132,6 +132,16 @@
                             }
                         }
                     }
+                },
+                {
+                    "name": "第18关",
+                    "pipeline_override": {
+                        "日月之井-指定关卡结束任务": {
+                            "custom_recognition_param": {
+                                "expression": "{日月之井-关卡识别}>=18"
+                            }
+                        }
+                    }
                 }
             ]
         }
