@@ -238,14 +238,6 @@
             "model": ""
         }
     },
-    "活动-科举乡试-开始答题agent-智谱": {
-        "max_hit": 100,
-        "recognition": "Custom",
-        "custom_recognition": "zhipu",
-        "attach": {
-            "apikey": ""
-        }
-    },
     "活动-科举乡试-正确率": {
         "recognition": "OCR",
         "expected": [],
