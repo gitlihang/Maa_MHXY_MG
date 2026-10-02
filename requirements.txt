@@ -1,12 +1,8 @@
-colorama
-Levenshtein
 loguru
 MaaAgentBinary
 MaaFw==5.13.0
 numpy
 pillow
-python-Levenshtein
-RapidFuzz
 StrEnum
 requests
 pydantic-core<2.43.0
