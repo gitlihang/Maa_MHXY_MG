@@ -70,7 +70,7 @@ class coordinate(CustomRecognition):
         min_count: dict = context.get_node_data(argv.node_name)["attach"]["min_count"]
 
         if PositionTracker.same_within(sec, context=context, min_count=min_count):
-            # logger.info(f"{sec}秒内{min_count}次坐标值一致，继续执行next任务")
+            logger.debug(f"在{argv.node_name}任务的{sec}秒内{min_count}次坐标值一致，继续执行next任务")
             return CustomRecognition.AnalyzeResult(box=(0,0,0,0),detail="")
            
         
