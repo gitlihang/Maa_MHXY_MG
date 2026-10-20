@@ -225,7 +225,7 @@
     },
     "挖宝图完成判断-坐标-20秒15次": {
         "focus": {
-            "Node.Recognition.Succeeded": "混队-抓鬼-坐标-20秒15次-单次结束"
+            "Node.Recognition.Succeeded": "挖宝图完成判断-坐标-20秒15次"
         },
         "recognition": "Custom",
         "custom_recognition": "coordinate",
