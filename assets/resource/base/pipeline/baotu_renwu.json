@@ -190,13 +190,14 @@
         "pre_delay": 1000,
         "action": "Click",
         "post_delay": 1000,
+        "timeout": 40000,
         "next": [
             "识别拓印_停止",
             "[JumpBack]师门完成-九转天阶遮挡",
             "[JumpBack]师门完成-九幽遮挡",
             "[JumpBack]战斗平衡弹窗-点击关闭",
             "[JumpBack]战斗中-等待5秒",
-            "宝图完成判断",
+            "宝图完成判断-坐标-20秒15次",
             "[JumpBack]宝图-间隔30秒-最大10分钟",
             "[JumpBack]宝图任务单次点击"
         ]
@@ -220,13 +221,10 @@
             "[JumpBack]师门完成-九幽遮挡",
             "[JumpBack]战斗平衡弹窗-点击关闭",
             "[JumpBack]战斗中-等待5秒",
-            "宝图完成判断",
+            "宝图完成判断-坐标-20秒15次",
             "[JumpBack]宝图-间隔30秒-最大10分钟",
             "[JumpBack]宝图任务单次点击"
         ]
-    },
-    "kaishi_datu": {
-        "next": []
     },
     "宝图任务单次点击": {
         "recognition": "OCR",
@@ -245,6 +243,20 @@
     "宝图-间隔30秒-最大10分钟": {
         "max_hit": 20,
         "pre_delay": 30000
+    },
+    "宝图完成判断-坐标-20秒15次": {
+        "focus": {
+            "Node.Recognition.Succeeded": "宝图完成判断-坐标-20秒15次"
+        },
+        "recognition": "Custom",
+        "custom_recognition": "coordinate",
+        "attach": {
+            "sec": 20,
+            "min_count": 15
+        },
+        "next": [
+            "panduan_zhujiemian"
+        ]
     },
     "baotu_renwu_sleep": {
         "pre_delay": 700000,
@@ -328,7 +340,6 @@
             "panduan_zhujiemian"
         ]
     },
-    "52": {},
     "战斗平衡弹窗-点击关闭": {
         "recognition": "TemplateMatch",
         "template": [
