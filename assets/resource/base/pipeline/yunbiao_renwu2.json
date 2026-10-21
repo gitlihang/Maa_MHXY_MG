@@ -209,5 +209,24 @@
         "pre_delay": 1000,
         "action": "Click",
         "post_delay": 1000
+    },
+    "点击押送高级镖银(三次)": {
+        "max_hit": 3,
+        "recognition": "OCR",
+        "expected": [
+            "押送高级镖银"
+        ],
+        "roi": [
+            933,
+            262,
+            307,
+            237
+        ],
+        "pre_delay": 1000,
+        "action": "Click",
+        "post_delay": 1000,
+        "next": [
+            "点击押送普通镖_确定"
+        ]
     }
 }

@@ -35,6 +35,31 @@
                     }
                 }
             ]
+        },
+        "押送普通/高级镖银": {
+            "type": "select",
+            "default_case": "押送普通镖银",
+            "cases": [
+                {
+                    "name": "押送普通镖银",
+                    "pipeline_override": {
+                        "活动-运镖-开始-点击参加": {}
+                    }
+                },
+                {
+                    "name": "押送高级镖银",
+                    "pipeline_override": {
+                        "活动-运镖-开始-点击参加": {
+                            "next": [
+                                "识别拓印_停止",
+                                "[JumpBack]点击押送高级镖银(三次)",
+                                "[JumpBack]运镖中",
+                                "[JumpBack]战斗中-等待20秒"
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     }
 }
