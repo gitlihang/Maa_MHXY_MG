@@ -287,8 +287,8 @@ class tayin_TZ(CustomAction):
         context: Context,
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
-        logger.info("遇见拓印，停止任务。")
-
+        
         context.tasker.post_stop().wait()
+        logger.info("停止所有任务完成。")
 
         return CustomAction.RunResult(success=True)
