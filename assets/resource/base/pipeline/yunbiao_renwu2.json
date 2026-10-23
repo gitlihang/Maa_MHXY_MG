@@ -228,5 +228,20 @@
         "next": [
             "点击押送普通镖_确定"
         ]
+    },
+    "点击押送高级镖_确定": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            657,
+            395,
+            179,
+            104
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1000
     }
 }
