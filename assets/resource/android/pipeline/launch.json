@@ -1,0 +1,431 @@
+{
+    "launch": {
+        "next": [
+            "启动游戏"
+        ]
+    },
+    "启动游戏": {
+        "action": "StartApp",
+        "package": "com.netease.my",
+        "post_delay": 90000,
+        "next": [
+            "切换历史账号-路由",
+            "主界面",
+            "[JumpBack]更新客户端",
+            "[JumpBack]正在下载本周更新",
+            "[JumpBack]登录等待10秒"
+        ]
+    },
+    "切换历史账号-路由": {
+        "next": [
+            "点击登录游戏",
+            "检查切换账号-识别登录"
+        ],
+        "next_failed": []
+    },
+    "更新客户端": {
+        "recognition": "Or",
+        "any_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zhanghao/require_update.png"
+                ],
+                "roi": [
+                    188,
+                    69,
+                    899,
+                    343
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "关闭"
+                ],
+                "roi": [
+                    431,
+                    485,
+                    200,
+                    79
+                ]
+            }
+        ],
+        "action": "Click",
+        "target": [
+            494,
+            512,
+            75,
+            30
+        ]
+    },
+    "正在下载本周更新": {
+        "recognition": "OCR",
+        "expected": [
+            "正在下载本周更新"
+        ],
+        "roi": [
+            196,
+            618,
+            963,
+            66
+        ],
+        "pre_delay": 1000,
+        "post_delay": 10000
+    },
+    "点击登录游戏": {
+        "recognition": "OCR",
+        "expected": "登录游戏",
+        "roi": [
+            504,
+            490,
+            268,
+            76
+        ],
+        "pre_delay": 1000,
+        "action": "Click",
+        "target": [
+            1198,
+            35,
+            30,
+            30
+        ],
+        "repeat": 4,
+        "repeat_delay": 750,
+        "post_delay": 450,
+        "next": [
+            "检查切换账号"
+        ],
+        "next_failed": []
+    },
+    "点击登录游戏-不换号": {
+        "recognition": "OCR",
+        "expected": "登录游戏",
+        "roi": [
+            504,
+            490,
+            268,
+            76
+        ],
+        "pre_delay": 1000,
+        "action": "Click",
+        "post_delay": 25000,
+        "next": [
+            "panduan_zhujiemian"
+        ],
+        "next_failed": []
+    },
+    "检查切换账号": {
+        "recognition": "OCR",
+        "expected": [
+            "切换账号"
+        ],
+        "roi": [
+            954,
+            192,
+            97,
+            24
+        ],
+        "action": "Click",
+        "post_delay": 5000,
+        "next": [
+            "检查切换账号-识别登录"
+        ],
+        "next_failed": []
+    },
+    "检查切换账号-识别登录": {
+        "recognition": "OCR",
+        "expected": [
+            "登录"
+        ],
+        "roi": [
+            606,
+            427,
+            69,
+            34
+        ],
+        "post_delay": 500,
+        "next": [
+            "展开历史列表"
+        ],
+        "next_failed": [
+            "未找到切换账号-重启"
+        ]
+    },
+    "未找到切换账号-重启": {
+        "action": "StopApp",
+        "package": "com.netease.my",
+        "post_delay": 3000,
+        "next": [
+            "启动游戏"
+        ]
+    },
+    "展开历史列表": {
+        "action": "Click",
+        "target": [
+            460,
+            288,
+            340,
+            85
+        ],
+        "post_delay": 1500,
+        "next": [
+            "展开历史-成功"
+        ],
+        "next_failed": [
+            "展开历史-重试"
+        ]
+    },
+    "展开历史-成功": {
+        "inverse": true,
+        "recognition": "OCR",
+        "expected": [
+            "登录"
+        ],
+        "roi": [
+            606,
+            427,
+            69,
+            34
+        ],
+        "next": [
+            "上滑找加新-第一次"
+        ],
+        "next_failed": []
+    },
+    "展开历史-重试": {
+        "action": "Click",
+        "target": [
+            460,
+            288,
+            340,
+            85
+        ],
+        "post_delay": 1500,
+        "next": [
+            "展开历史-重试成功"
+        ],
+        "next_failed": [
+            "展开历史-失败重启"
+        ]
+    },
+    "展开历史-重试成功": {
+        "inverse": true,
+        "recognition": "OCR",
+        "expected": [
+            "登录"
+        ],
+        "roi": [
+            606,
+            427,
+            69,
+            34
+        ],
+        "next": [
+            "上滑找加新-第一次"
+        ],
+        "next_failed": []
+    },
+    "展开历史-失败重启": {
+        "action": "StopApp",
+        "package": "com.netease.my",
+        "post_delay": 3000,
+        "next": [
+            "启动游戏"
+        ]
+    },
+    "上滑找加新-第一次": {
+        "pre_delay": 1000,
+        "action": "Swipe",
+        "begin": [
+            598,
+            446,
+            221,
+            77
+        ],
+        "end": [
+            786,
+            24,
+            284,
+            100
+        ],
+        "post_delay": 800,
+        "next": [
+            "检查加新-第一次"
+        ],
+        "next_failed": [
+            "上滑找加新-重试1"
+        ]
+    },
+    "检查加新-第一次": {
+        "recognition": "OCR",
+        "expected": [
+            "加新"
+        ],
+        "roi": [
+            495,
+            556,
+            46,
+            25
+        ],
+        "action": "Click",
+        "target": [
+            598,
+            446,
+            221,
+            77
+        ],
+        "next": [
+            "点击登录按钮"
+        ],
+        "next_failed": []
+    },
+    "上滑找加新-重试1": {
+        "action": "Swipe",
+        "begin": [
+            598,
+            446,
+            221,
+            77
+        ],
+        "end": [
+            786,
+            24,
+            284,
+            100
+        ],
+        "post_delay": 800,
+        "next": [
+            "上滑找加新-重试2"
+        ],
+        "next_failed": []
+    },
+    "上滑找加新-重试2": {
+        "action": "Swipe",
+        "begin": [
+            598,
+            446,
+            221,
+            77
+        ],
+        "end": [
+            786,
+            24,
+            284,
+            100
+        ],
+        "post_delay": 800,
+        "next": [
+            "上滑找加新-重试3"
+        ],
+        "next_failed": []
+    },
+    "上滑找加新-重试3": {
+        "action": "Swipe",
+        "begin": [
+            598,
+            446,
+            221,
+            77
+        ],
+        "end": [
+            786,
+            24,
+            284,
+            100
+        ],
+        "post_delay": 800,
+        "next": [
+            "检查加新-重试"
+        ],
+        "next_failed": [
+            "未找到加新-重启"
+        ]
+    },
+    "检查加新-重试": {
+        "recognition": "OCR",
+        "expected": [
+            "加新"
+        ],
+        "roi": [
+            495,
+            556,
+            46,
+            25
+        ],
+        "action": "Click",
+        "target": [
+            598,
+            446,
+            221,
+            77
+        ],
+        "next": [
+            "点击登录按钮"
+        ],
+        "next_failed": []
+    },
+    "未找到加新-重启": {
+        "action": "StopApp",
+        "package": "com.netease.my",
+        "post_delay": 3000,
+        "next": [
+            "启动游戏"
+        ]
+    },
+    "点击登录按钮": {
+        "pre_delay": 1000,
+        "action": "Click",
+        "target": [
+            554,
+            424,
+            310,
+            39
+        ],
+        "post_delay": 15000,
+        "next": [
+            "红黄绿匹配登录"
+        ],
+        "next_failed": []
+    },
+    "红黄绿匹配登录": {
+        "recognition": "TemplateMatch",
+        "template": [
+            "zhanghao/hong_fwq.png",
+            "zhanghao/huang_fwq.png",
+            "zhanghao/lv_fwq.png"
+        ],
+        "roi": [
+            476,
+            402,
+            40,
+            35
+        ],
+        "timeout": 15000,
+        "action": "Click",
+        "target": [
+            504,
+            490,
+            268,
+            76
+        ],
+        "post_delay": 15000,
+        "next": [
+            "panduan_zhujiemian"
+        ],
+        "next_failed": [
+            "红黄绿识别失败-重启"
+        ]
+    },
+    "红黄绿识别失败-重启": {
+        "action": "StopApp",
+        "package": "com.netease.my",
+        "post_delay": 3000,
+        "next": [
+            "启动游戏"
+        ]
+    },
+    "登录等待10秒": {
+        "pre_delay": 10000
+    }
+}
