@@ -1,0 +1,190 @@
+{
+    "mengghuan_xiaomi": {
+        "next": [
+            "梦幻小蜜-找包裹图标"
+        ]
+    },
+    "梦幻小蜜-找包裹图标": {
+        "max_hit": 5,
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/baoguo.png",
+            "zonghe/baoguo_man.png"
+        ],
+        "roi": [
+            1197,
+            540,
+            78,
+            157
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "梦幻小蜜-确认背包打开",
+            "[JumpBack]梦幻小蜜-找包裹图标"
+        ],
+        "next_failed": [
+            "梦幻小蜜-找包裹-重试1"
+        ]
+    },
+    "梦幻小蜜-找包裹-重试1": {
+        "max_hit": 5,
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/baoguo.png",
+            "zonghe/baoguo_man.png"
+        ],
+        "roi": [
+            1197,
+            540,
+            78,
+            157
+        ],
+        "pre_delay": 3000,
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "梦幻小蜜-确认背包打开",
+            "[JumpBack]梦幻小蜜-找包裹-重试1"
+        ],
+        "next_failed": [
+            "梦幻小蜜-找包裹-重试2"
+        ]
+    },
+    "梦幻小蜜-找包裹-重试2": {
+        "max_hit": 5,
+        "recognition": "TemplateMatch",
+        "template": [
+            "zonghe/baoguo.png",
+            "zonghe/baoguo_man.png"
+        ],
+        "roi": [
+            1197,
+            540,
+            78,
+            157
+        ],
+        "pre_delay": 3000,
+        "action": "Click",
+        "post_delay": 1200,
+        "next": [
+            "梦幻小蜜-确认背包打开",
+            "[JumpBack]梦幻小蜜-找包裹-重试2"
+        ],
+        "next_failed": []
+    },
+    "梦幻小蜜-确认背包打开": {
+        "recognition": "TemplateMatch",
+        "template": "beibao/beibao_jiemian_panduan.png",
+        "roi": [
+            335,
+            5,
+            577,
+            68
+        ],
+        "pre_delay": 500,
+        "next": [
+            "梦幻小蜜-识别金币并推送"
+        ]
+    },
+    "梦幻小蜜-识别金币并推送": {
+        "focus": {
+            "Node.Recognition.Succeeded": "梦幻小蜜完成，金币已读取，钉钉推送结果请查看日志"
+        },
+        "action": "Custom",
+        "custom_action": "mengghuan_xiaomi_push",
+        "custom_action_param": {
+            "recognition_name": "梦幻小蜜-金币识别",
+            "roi": [
+                177,
+                633,
+                174,
+                45
+            ],
+            "webhook_url": "",
+            "secret": "",
+            "role": "34",
+            "message_template": "🎮 任务已完成\n━━━━━━━━━━━━━━━\n⏰ 时间: {time}\n📱 角色: {role}\n━━━━━━━━━━━━━━━\n💰 : {gold}\n━━━━━━━━━━━━━━━",
+            "msgtype": "text",
+            "screenshot": false,
+            "screenshot_dir": "./debug/custom/mengghuan_xiaomi"
+        },
+        "next": [
+            "梦幻小蜜-关闭背包"
+        ]
+    },
+    "梦幻小蜜-金币识别": {
+        "recognition": "OCR",
+        "expected": [],
+        "roi": [
+            177,
+            633,
+            174,
+            45
+        ]
+    },
+    "梦幻小蜜-关闭背包": {
+        "recognition": "TemplateMatch",
+        "template": "beibao/beibao_jiemian_panduan.png",
+        "roi": [
+            335,
+            5,
+            577,
+            68
+        ],
+        "action": "Click",
+        "target": [
+            1083,
+            27,
+            41,
+            47
+        ],
+        "post_delay": 800,
+        "next": [
+            "梦幻小蜜-确认背包关闭"
+        ]
+    },
+    "梦幻小蜜-确认背包关闭": {
+        "inverse": true,
+        "recognition": "TemplateMatch",
+        "template": "beibao/beibao_jiemian_panduan.png",
+        "roi": [
+            335,
+            5,
+            577,
+            68
+        ],
+        "pre_delay": 800,
+        "next": [
+            "panduan_zhujiemian"
+        ],
+        "next_failed": [
+            "梦幻小蜜-关闭背包-重试"
+        ]
+    },
+    "梦幻小蜜-关闭背包-重试": {
+        "recognition": "TemplateMatch",
+        "template": "beibao/beibao_jiemian_panduan.png",
+        "roi": [
+            335,
+            5,
+            577,
+            68
+        ],
+        "action": "Click",
+        "target": [
+            1083,
+            27,
+            41,
+            47
+        ],
+        "post_delay": 800,
+        "next": [
+            "梦幻小蜜-确认背包关闭"
+        ],
+        "next_failed": [
+            "梦幻小蜜-确认背包关闭"
+        ]
+    }
+}

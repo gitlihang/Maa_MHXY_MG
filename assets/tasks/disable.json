@@ -1,0 +1,30 @@
+{
+    "task": [
+        {
+            "name": "关闭游戏-n",
+            "entry": "disable",
+            "description": "停止游戏，自定义游戏包名，保持默认即官服 com.netease.my",
+            "option": ["custom_package_name"]
+        }
+    ],
+    "option": {
+        "custom_package_name": {
+            "label": "自定义游戏包名",
+            "type": "input",
+            "description": "默认 com.netease.my，可改为渠道包名如 com.netease.my.uc",
+            "inputs": [
+                {
+                    "name": "package_name",
+                    "label": "游戏包名",
+                    "pipeline_type": "string",
+                    "default": "com.netease.my"
+                }
+            ],
+            "pipeline_override": {
+                "停止游戏": {
+                    "package": "{package_name}"
+                }
+            }
+        }
+    }
+}

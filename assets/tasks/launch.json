@@ -1,0 +1,77 @@
+{
+    "task": [
+        {
+            "name": "启动游戏-n",
+            "entry": "launch",
+            "description": "启动游戏，自定义游戏包名，保持默认即官服 com.netease.my。『切换历史账号』开启走本地换号流程，关闭走作者原版直登流程。",
+            "option": [
+                "custom_package_name",
+                "切换历史账号"
+            ]
+        }
+    ],
+    "option": {
+        "custom_package_name": {
+            "label": "自定义游戏包名",
+            "type": "input",
+            "description": "默认 com.netease.my，可改为渠道包名如 com.netease.my.uc",
+            "inputs": [
+                {
+                    "name": "package_name",
+                    "label": "游戏包名",
+                    "pipeline_type": "string",
+                    "default": "com.netease.my"
+                }
+            ],
+            "pipeline_override": {
+                "启动游戏": {
+                    "package": "{package_name}"
+                },
+                "未找到切换账号-重启": {
+                    "package": "{package_name}"
+                },
+                "展开历史-失败重启": {
+                    "package": "{package_name}"
+                },
+                "未找到加新-重启": {
+                    "package": "{package_name}"
+                },
+                "红黄绿识别失败-重启": {
+                    "package": "{package_name}"
+                },
+                "停止游戏": {
+                    "package": "{package_name}"
+                }
+            }
+        },
+        "切换历史账号": {
+            "label": "切换历史账号",
+            "type": "switch",
+            "description": "开启：点击登录后进入『切换账号→展开历史→找加新』换号流程（本地方案）。关闭：按作者原版直接点登录按钮登默认账号，不换号。",
+            "default_case": "Off",
+            "cases": [
+                {
+                    "name": "On",
+                    "pipeline_override": {
+                        "切换历史账号-路由": {
+                            "next": [
+                                "点击登录游戏",
+                                "检查切换账号-识别登录"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Off",
+                    "pipeline_override": {
+                        "切换历史账号-路由": {
+                            "next": [
+                                "点击登录游戏-不换号"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

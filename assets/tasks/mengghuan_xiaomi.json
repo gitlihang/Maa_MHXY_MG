@@ -1,0 +1,83 @@
+{
+    "task": [
+        {
+            "name": "梦幻小蜜",
+            "entry": "mengghuan_xiaomi",
+            "description": "自动打开包裹→识别金币矩阵→通过钉钉机器人推送『任务完成+金币数量』。请先在『钉钉机器人配置』中填入 Webhook 地址（必填）、加签密钥（选填）、角色与消息模板。",
+            "option": [
+                "截图金币矩阵",
+                "钉钉机器人配置"
+            ]
+        }
+    ],
+    "option": {
+        "钉钉机器人配置": {
+            "type": "input",
+            "label": "钉钉机器人配置",
+            "description": "填入钉钉机器人 Webhook 地址、加签密钥(secret，没有则留空)、角色(可自定义)、消息模板。模板支持 {time} {role} {gold} 三个占位符。",
+            "inputs": [
+                {
+                    "name": "webhook_url",
+                    "label": "钉钉Webhook地址",
+                    "pipeline_type": "string",
+                    "default": ""
+                },
+                {
+                    "name": "secret",
+                    "label": "加签密钥secret(没有则留空)",
+                    "pipeline_type": "string",
+                    "default": ""
+                },
+                {
+                    "name": "role",
+                    "label": "角色(可自定义输入)",
+                    "pipeline_type": "string",
+                    "default": "34"
+                },
+                {
+                    "name": "message_template",
+                    "label": "消息模板(支持{time}{role}{gold})",
+                    "pipeline_type": "string",
+                    "default": "🎮 任务已完成\n━━━━━━━━━━━━━━━\n⏰ 时间: {time}\n📱 角色: {role}\n━━━━━━━━━━━━━━━\n💰 : {gold}\n━━━━━━━━━━━━━━━"
+                }
+            ],
+            "pipeline_override": {
+                "梦幻小蜜-识别金币并推送": {
+                    "custom_action_param": {
+                        "webhook_url": "{webhook_url}",
+                        "secret": "{secret}",
+                        "role": "{role}",
+                        "message_template": "{message_template}"
+                    }
+                }
+            }
+        },
+        "截图金币矩阵": {
+            "type": "switch",
+            "description": "开启后，会把金币矩阵区域截图保存到项目 debug/custom/mengghuan_xiaomi 目录，作为推送内容的备选方案。",
+            "default_case": "Off",
+            "cases": [
+                {
+                    "name": "Off",
+                    "pipeline_override": {
+                        "梦幻小蜜-识别金币并推送": {
+                            "custom_action_param": {
+                                "screenshot": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "On",
+                    "pipeline_override": {
+                        "梦幻小蜜-识别金币并推送": {
+                            "custom_action_param": {
+                                "screenshot": true
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
