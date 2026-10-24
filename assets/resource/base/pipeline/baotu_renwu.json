@@ -197,7 +197,7 @@
             "[JumpBack]师门完成-九幽遮挡",
             "[JumpBack]战斗平衡弹窗-点击关闭",
             "[JumpBack]战斗中-等待5秒",
-            "宝图完成判断-坐标-20秒15次",
+            "宝图完成判断-坐标-15秒10次",
             "[JumpBack]宝图-间隔30秒-最大10分钟",
             "[JumpBack]宝图任务单次点击"
         ]
@@ -221,7 +221,7 @@
             "[JumpBack]师门完成-九幽遮挡",
             "[JumpBack]战斗平衡弹窗-点击关闭",
             "[JumpBack]战斗中-等待5秒",
-            "宝图完成判断-坐标-20秒15次",
+            "宝图完成判断-坐标-15秒10次",
             "[JumpBack]宝图-间隔30秒-最大10分钟",
             "[JumpBack]宝图任务单次点击"
         ]
@@ -244,15 +244,15 @@
         "max_hit": 20,
         "pre_delay": 30000
     },
-    "宝图完成判断-坐标-20秒15次": {
+    "宝图完成判断-坐标-15秒10次": {
         "focus": {
-            "Node.Recognition.Succeeded": "宝图完成判断-坐标-20秒15次"
+            "Node.Recognition.Succeeded": "宝图完成判断-坐标-15秒10次"
         },
         "recognition": "Custom",
         "custom_recognition": "coordinate",
         "attach": {
-            "sec": 20,
-            "min_count": 15
+            "sec": 15,
+            "min_count": 10
         },
         "next": [
             "panduan_zhujiemian"
