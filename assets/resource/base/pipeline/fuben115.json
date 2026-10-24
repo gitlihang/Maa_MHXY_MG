@@ -87,11 +87,11 @@
             }
         ],
         "action": "Click",
-        "target_offset": [
-            3,
-            3,
-            -4,
-            -8
+        "target": [
+            441,
+            368,
+            72,
+            17
         ],
         "post_delay": 1000,
         "next": [
@@ -257,11 +257,11 @@
             }
         ],
         "action": "Click",
-        "target_offset": [
-            3,
-            3,
-            -4,
-            -8
+        "target": [
+            441,
+            368,
+            72,
+            17
         ],
         "post_delay": 1000,
         "next": [
@@ -478,11 +478,11 @@
             }
         ],
         "action": "Click",
-        "target_offset": [
-            3,
-            3,
-            -4,
-            -8
+        "target": [
+            441,
+            368,
+            72,
+            17
         ],
         "post_delay": 1000,
         "next": [
@@ -632,11 +632,11 @@
             }
         ],
         "action": "Click",
-        "target_offset": [
-            3,
-            3,
-            -4,
-            -8
+        "target": [
+            441,
+            368,
+            72,
+            17
         ],
         "post_delay": 1000,
         "next": [
@@ -769,11 +769,11 @@
             }
         ],
         "action": "Click",
-        "target_offset": [
-            3,
-            3,
-            -4,
-            -8
+        "target": [
+            441,
+            368,
+            72,
+            17
         ],
         "post_delay": 1000,
         "next": [
@@ -906,11 +906,11 @@
             }
         ],
         "action": "Click",
-        "target_offset": [
-            3,
-            3,
-            -4,
-            -8
+        "target": [
+            441,
+            368,
+            72,
+            17
         ],
         "post_delay": 1000,
         "next": [
