@@ -1,0 +1,1276 @@
+{
+    "队长过渡":  {
+                 "recognition":  "TemplateMatch",
+                 "template":  [
+                                  "zonghe/chenghao.png",
+                                  "zonghe/jiahao.png"
+                              ],
+                 "roi":  [
+                             1206,
+                             637,
+                             66,
+                             57
+                         ],
+                 "pre_delay":  500,
+                 "action":  "Click",
+                 "target":  [
+                                0,
+                                435,
+                                84,
+                                80
+                            ],
+                 "next":  [
+                              "邀请队员-打开好友界面成功",
+                              "[JumpBack]好友界面-按键打开失败-点击好友图标"
+                          ]
+             },
+    "队长踢人过渡":  {
+                   "recognition":  "TemplateMatch",
+                   "template":  [
+                                    "zonghe/chenghao.png",
+                                    "zonghe/jiahao.png"
+                                ],
+                   "roi":  [
+                               1206,
+                               637,
+                               66,
+                               57
+                           ],
+                   "pre_delay":  500,
+                   "action":  "Click",
+                   "target":  [
+                                  1161,
+                                  104,
+                                  119,
+                                  65
+                              ],
+                   "post_delay":  500,
+                   "next":  [
+                                "队长踢人-进入主界面",
+                                "[JumpBack]队伍界面-按键打开失败-点击队伍图标"
+                            ]
+               },
+    "打开帮派界面":  {
+                   "pre_wait_freezes":  1,
+                   "action":  "Click",
+                   "target":  [
+                                  815,
+                                  627,
+                                  78,
+                                  82
+                              ],
+                   "post_delay":  1000,
+                   "next":  [
+                                "打开帮派界面成功",
+                                "[JumpBack]帮派界面-按键打开失败-点击帮派图标"
+                            ]
+               },
+    "主界面-领取帮派任务":  {
+                       "recognition":  "TemplateMatch",
+                       "template":  [
+                                        "zonghe/jiahao.png",
+                                        "zonghe/chenghao.png",
+                                        "zonghe/baoguo.png",
+                                        "zonghe/baoguo_man.png"
+                                    ],
+                       "roi":  [
+                                   1197,
+                                   540,
+                                   78,
+                                   157
+                               ],
+                       "post_delay":  2000,
+                       "action":  "Click",
+                       "target":  [
+                                      316,
+                                      2,
+                                      79,
+                                      78
+                                  ],
+                       "post_wait_freezes":  100,
+                       "next":  [
+                                    "活动-帮派任务",
+                                    "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                    "[JumpBack]战斗平衡弹窗-点击关闭"
+                                ]
+                   },
+    "主界面-宝图任务":  {
+                     "recognition":  "TemplateMatch",
+                     "template":  [
+                                      "zonghe/jiahao.png",
+                                      "zonghe/chenghao.png",
+                                      "zonghe/baoguo.png",
+                                      "zonghe/baoguo_man.png"
+                                  ],
+                     "roi":  [
+                                 1197,
+                                 540,
+                                 78,
+                                 157
+                             ],
+                     "post_delay":  2000,
+                     "action":  "Click",
+                     "target":  [
+                                    316,
+                                    2,
+                                    79,
+                                    78
+                                ],
+                     "post_wait_freezes":  100,
+                     "next":  [
+                                  "活动-宝图任务",
+                                  "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                  "[JumpBack]战斗平衡弹窗-点击关闭"
+                              ]
+                 },
+    "移动到神树附近":  {
+                    "pre_delay":  1500,
+                    "action":  "Click",
+                    "target":  [
+                                   82,
+                                   22,
+                                   141,
+                                   33
+                               ],
+                    "post_delay":  1500,
+                    "next":  [
+                                 "祈福-打开小地图成功-开始移动",
+                                 "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                             ]
+                },
+    "队伍-打开界面":  {
+                    "recognition":  "TemplateMatch",
+                    "template":  [
+                                     "zonghe/chenghao.png",
+                                     "zonghe/jiahao.png"
+                                 ],
+                    "roi":  [
+                                1206,
+                                637,
+                                66,
+                                57
+                            ],
+                    "pre_delay":  500,
+                    "action":  "Click",
+                    "target":  [
+                                   1161,
+                                   104,
+                                   119,
+                                   65
+                               ],
+                    "post_delay":  1000,
+                    "next":  [
+                                 "队伍-进入主界面",
+                                 "[JumpBack]队伍界面-按键打开失败-点击队伍图标"
+                             ]
+                },
+    "打开摆摊":  {
+                 "recognition":  "TemplateMatch",
+                 "template":  [
+                                  "zonghe/chenghao.png",
+                                  "zonghe/jiahao.png"
+                              ],
+                 "roi":  [
+                             1206,
+                             637,
+                             66,
+                             57
+                         ],
+                 "pre_delay":  200,
+                 "action":  "Click",
+                 "target":  [
+                                2,
+                                175,
+                                86,
+                                89
+                            ],
+                 "post_delay":  1000,
+                 "next":  [
+                              "打开摆摊成功",
+                              "[JumpBack]摆摊界面-按键打开失败-点击摆摊图标"
+                          ]
+             },
+    "115打开小地图_百晓仙子":  {
+                          "pre_delay":  1000,
+                          "action":  "Click",
+                          "target":  [
+                                         82,
+                                         22,
+                                         141,
+                                         33
+                                     ],
+                          "post_delay":  1000,
+                          "next":  [
+                                       "115点击地图-百晓仙子",
+                                       "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                   ]
+                      },
+    "115返回长安城":  {
+                     "recognition":  "OCR",
+                     "expected":  [
+                                      "长安城"
+                                  ],
+                     "roi":  [
+                                 108,
+                                 22,
+                                 117,
+                                 31
+                             ],
+                     "pre_delay":  500,
+                     "action":  "Click",
+                     "target":  [
+                                    82,
+                                    22,
+                                    141,
+                                    33
+                                ],
+                     "post_delay":  1000,
+                     "next":  [
+                                  "115返回长安城-点击地图-百晓仙子",
+                                  "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                              ]
+                 },
+    "115-打开小地图_百晓仙子-50侠士(第二次进入)":  {
+                                       "recognition":  "OCR",
+                                       "expected":  [
+                                                        "长安城"
+                                                    ],
+                                       "roi":  [
+                                                   108,
+                                                   22,
+                                                   117,
+                                                   31
+                                               ],
+                                       "pre_delay":  1000,
+                                       "action":  "Click",
+                                       "target":  [
+                                                      82,
+                                                      22,
+                                                      141,
+                                                      33
+                                                  ],
+                                       "post_delay":  1000,
+                                       "next":  [
+                                                    "115点击地图-百晓仙子-50侠士(第二次进入)",
+                                                    "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                                ]
+                                   },
+    "115打开小地图-百晓仙子-50普通-1":  {
+                                 "recognition":  "OCR",
+                                 "expected":  [
+                                                  "长安城"
+                                              ],
+                                 "roi":  [
+                                             108,
+                                             22,
+                                             117,
+                                             31
+                                         ],
+                                 "pre_delay":  1000,
+                                 "action":  "Click",
+                                 "target":  [
+                                                82,
+                                                22,
+                                                141,
+                                                33
+                                            ],
+                                 "post_delay":  1000,
+                                 "next":  [
+                                              "115点击地图-百晓仙子-50普通-1",
+                                              "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                          ]
+                             },
+    "115打开小地图_百晓仙子-50普通-2":  {
+                                 "recognition":  "OCR",
+                                 "expected":  [
+                                                  "长安城"
+                                              ],
+                                 "roi":  [
+                                             108,
+                                             22,
+                                             117,
+                                             31
+                                         ],
+                                 "pre_delay":  1000,
+                                 "action":  "Click",
+                                 "target":  [
+                                                82,
+                                                22,
+                                                141,
+                                                33
+                                            ],
+                                 "post_delay":  1000,
+                                 "next":  [
+                                              "115点击地图-百晓仙子-50普通-2",
+                                              "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                          ]
+                             },
+    "115打开小地图_百晓仙子-70普通-3":  {
+                                 "recognition":  "OCR",
+                                 "expected":  [
+                                                  "长安城"
+                                              ],
+                                 "roi":  [
+                                             108,
+                                             22,
+                                             117,
+                                             31
+                                         ],
+                                 "pre_delay":  1000,
+                                 "action":  "Click",
+                                 "target":  [
+                                                82,
+                                                22,
+                                                141,
+                                                33
+                                            ],
+                                 "post_delay":  1000,
+                                 "next":  [
+                                              "115点击地图-百晓仙子-70普通-3",
+                                              "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                          ]
+                             },
+    "打开大地图_69副本":  {
+                       "pre_delay":  500,
+                       "action":  "Click",
+                       "target":  [
+                                      8,
+                                      7,
+                                      70,
+                                      74
+                                  ],
+                       "post_delay":  1000,
+                       "next":  [
+                                    "打开大地图成功_传送长安城_69副本",
+                                    "[JumpBack]panduan_zhujiemian_ks",
+                                    "[JumpBack]大地图界面-按键打开失败_点击图标"
+                                ]
+                   },
+    "打开小地图_百晓仙子":  {
+                       "pre_delay":  1000,
+                       "action":  "Click",
+                       "target":  [
+                                      82,
+                                      22,
+                                      141,
+                                      33
+                                  ],
+                       "post_delay":  1000,
+                       "next":  [
+                                    "点击地图-百晓仙子",
+                                    "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                ]
+                   },
+    "打开小地图_百晓仙子-50普通-1":  {
+                              "recognition":  "OCR",
+                              "expected":  [
+                                               "长安城"
+                                           ],
+                              "roi":  [
+                                          108,
+                                          22,
+                                          117,
+                                          31
+                                      ],
+                              "pre_delay":  1000,
+                              "action":  "Click",
+                              "target":  [
+                                             82,
+                                             22,
+                                             141,
+                                             33
+                                         ],
+                              "post_delay":  1000,
+                              "next":  [
+                                           "点击地图-百晓仙子-50普通-1",
+                                           "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                       ]
+                          },
+    "打开小地图_百晓仙子-50普通-2":  {
+                              "recognition":  "OCR",
+                              "expected":  [
+                                               "长安城"
+                                           ],
+                              "roi":  [
+                                          108,
+                                          22,
+                                          117,
+                                          31
+                                      ],
+                              "pre_delay":  1500,
+                              "action":  "Click",
+                              "target":  [
+                                             82,
+                                             22,
+                                             141,
+                                             33
+                                         ],
+                              "post_delay":  1500,
+                              "next":  [
+                                           "点击地图-百晓仙子-50普通-2",
+                                           "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                       ]
+                          },
+    "退出队伍":  {
+                 "pre_wait_freezes":  10,
+                 "action":  "Click",
+                 "target":  [
+                                1161,
+                                104,
+                                119,
+                                65
+                            ],
+                 "post_delay":  1000,
+                 "next":  [
+                              "打开队伍界面成功_退出队伍",
+                              "[JumpBack]队伍界面-按键打开失败-点击队伍图标"
+                          ]
+             },
+    "fuli_qiandao-ocr":  {
+                             "recognition":  "OCR",
+                             "expected":  [
+                                              "福利"
+                                          ],
+                             "roi":  [
+                                         1,
+                                         112,
+                                         72,
+                                         65
+                                     ],
+                             "pre_wait_freezes":  1,
+                             "action":  "Click",
+                             "target":  [
+                                            1,
+                                            112,
+                                            72,
+                                            65
+                                        ],
+                             "post_delay":  1000,
+                             "next":  [
+                                          "dakaiguaguale",
+                                          "[JumpBack]福利界面-按键失败-点击福利图标"
+                                      ]
+                         },
+    "工坊考古-打开技能界面":  {
+                        "pre_delay":  500,
+                        "action":  "Click",
+                        "target":  [
+                                       1038,
+                                       620,
+                                       94,
+                                       89
+                                   ],
+                        "post_delay":  500,
+                        "next":  [
+                                     "工坊考古-打开技能界面成功",
+                                     "[JumpBack]技能界面-按键打开失败-点击技能图标"
+                                 ]
+                    },
+    "古董售卖-过渡":  {
+                    "recognition":  "TemplateMatch",
+                    "template":  [
+                                     "zonghe/chenghao.png",
+                                     "zonghe/jiahao.png"
+                                 ],
+                    "roi":  [
+                                1206,
+                                637,
+                                66,
+                                57
+                            ],
+                    "pre_delay":  500,
+                    "action":  "Click",
+                    "target":  [
+                                   1185,
+                                   529,
+                                   95,
+                                   110
+                               ],
+                    "post_delay":  1000,
+                    "next":  [
+                                 "古董售卖-打开背包成功-向上滑动到顶端",
+                                 "[JumpBack]背包界面-按键打开失败-点击图标"
+                             ]
+                },
+    "打开人物界面-过渡":  {
+                      "recognition":  "TemplateMatch",
+                      "template":  [
+                                       "zonghe/chenghao.png",
+                                       "zonghe/jiahao.png"
+                                   ],
+                      "roi":  [
+                                  1206,
+                                  637,
+                                  66,
+                                  57
+                              ],
+                      "pre_delay":  1000,
+                      "action":  "Click",
+                      "target":  [
+                                     1185,
+                                     5,
+                                     91,
+                                     92
+                                 ],
+                      "post_delay":  2000,
+                      "next":  [
+                                   "打开人物界面-成功",
+                                   "[JumpBack]人物界面-按键打开失败-点击图标"
+                               ]
+                  },
+    "主界面-活跃领取":  {
+                     "recognition":  "TemplateMatch",
+                     "template":  [
+                                      "zonghe/jiahao.png",
+                                      "zonghe/chenghao.png",
+                                      "zonghe/baoguo.png",
+                                      "zonghe/baoguo_man.png"
+                                  ],
+                     "roi":  [
+                                 1197,
+                                 540,
+                                 78,
+                                 157
+                             ],
+                     "post_delay":  500,
+                     "action":  "Click",
+                     "target":  [
+                                    316,
+                                    2,
+                                    79,
+                                    78
+                                ],
+                     "post_wait_freezes":  100,
+                     "next":  [
+                                  "活跃奖励领取-打开活动界面成功",
+                                  "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                  "[JumpBack]战斗平衡弹窗-点击关闭"
+                              ]
+                 },
+    "点击家园":  {
+                 "recognition":  "TemplateMatch",
+                 "template":  "jiayuan/jiayuan.png",
+                 "roi":  [
+                             977,
+                             640,
+                             60,
+                             46
+                         ],
+                 "pre_delay":  1000,
+                 "pre_wait_freezes":  1,
+                 "action":  "Click",
+                 "target":  [
+                                977,
+                                640,
+                                60,
+                                46
+                            ],
+                 "post_delay":  1000,
+                 "next":  [
+                              "点击回家",
+                              "[JumpBack]家园界面-按键失败-点击家园图标"
+                          ]
+             },
+    "主界面-科举乡试":  {
+                     "recognition":  "TemplateMatch",
+                     "template":  [
+                                      "zonghe/jiahao.png",
+                                      "zonghe/chenghao.png",
+                                      "zonghe/baoguo.png",
+                                      "zonghe/baoguo_man.png"
+                                  ],
+                     "roi":  [
+                                 1197,
+                                 540,
+                                 78,
+                                 157
+                             ],
+                     "post_delay":  500,
+                     "action":  "Click",
+                     "target":  [
+                                    316,
+                                    2,
+                                    79,
+                                    78
+                                ],
+                     "post_wait_freezes":  100,
+                     "next":  [
+                                  "活动-科举乡试",
+                                  "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                  "[JumpBack]战斗平衡弹窗-点击关闭"
+                              ]
+                 },
+    "dakai_map":  {
+                      "pre_delay":  1000,
+                      "action":  "Click",
+                      "target":  [
+                                     8,
+                                     7,
+                                     70,
+                                     74
+                                 ],
+                      "post_delay":  2000,
+                      "next":  [
+                                   "打开大地图成功_传送东海湾_秘境任务",
+                                   "[JumpBack]大地图界面-按键打开失败_点击图标"
+                               ]
+                  },
+    "click_tab_mijing":  {
+                      "recognition": "TemplateMatch",
+                      "template": [
+                            "zonghe/xiaoditu_taiyang.png",
+                            "zonghe/xiaoditu_yueliang.png"
+                             ],
+                      "roi": [
+                            82,
+                            22,
+                            141,
+                            33
+                             ],
+                      "threshold": [
+                            0.9
+                                ],
+                      "pre_delay": 500,
+                      "action": "Click",
+                      "post_delay": 1000,
+                             "next":  [
+                                          "东海湾小地图打开成功",
+                                          "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                      ]
+                         },
+    "主界面-秘境降妖":  {
+                     "recognition":  "TemplateMatch",
+                     "template":  [
+                                      "zonghe/jiahao.png",
+                                      "zonghe/chenghao.png",
+                                      "zonghe/baoguo.png",
+                                      "zonghe/baoguo_man.png"
+                                  ],
+                     "roi":  [
+                                 1197,
+                                 540,
+                                 78,
+                                 157
+                             ],
+                     "post_delay":  2000,
+                     "action":  "Click",
+                     "target":  [
+                                    316,
+                                    2,
+                                    79,
+                                    78
+                                ],
+                     "post_wait_freezes":  100,
+                     "next":  [
+                                  "活动-秘境降妖",
+                                  "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                  "[JumpBack]战斗平衡弹窗-点击关闭"
+                              ]
+                 },
+    "主界面-趣味鉴赏":  {
+                     "recognition":  "TemplateMatch",
+                     "template":  [
+                                      "zonghe/jiahao.png",
+                                      "zonghe/chenghao.png",
+                                      "zonghe/baoguo.png",
+                                      "zonghe/baoguo_man.png"
+                                  ],
+                     "roi":  [
+                                 1197,
+                                 540,
+                                 78,
+                                 157
+                             ],
+                     "action":  "Click",
+                     "target":  [
+                                    316,
+                                    2,
+                                    79,
+                                    78
+                                ],
+                     "post_delay":  2000,
+                     "post_wait_freezes":  500,
+                     "next":  [
+                                  "活动-趣味鉴赏",
+                                  "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                  "[JumpBack]战斗平衡弹窗-点击关闭"
+                              ]
+                 },
+    "背包金币数量-第一次":  {
+                       "max_hit":  1,
+                       "pre_delay":  500,
+                       "action":  "Click",
+                       "target":  [
+                                      1185,
+                                      529,
+                                      95,
+                                      110
+                                  ],
+                       "post_delay":  1000,
+                       "next":  [
+                                    "背包金币数量-打开背包成功",
+                                    "[JumpBack]背包界面-按键打开失败-点击图标"
+                                ]
+                   },
+    "背包金币数量-第二次":  {
+                       "max_hit":  1,
+                       "pre_delay":  500,
+                       "action":  "Click",
+                       "target":  [
+                                      1185,
+                                      529,
+                                      95,
+                                      110
+                                  ],
+                       "post_delay":  1000,
+                       "next":  [
+                                    "背包金币数量-打开背包成功",
+                                    "[JumpBack]背包界面-按键打开失败-点击图标"
+                                ]
+                   },
+    "经验链-寻物-打开挂机界面":  {
+                          "action":  "Click",
+                          "target":  [
+                                         470,
+                                         3,
+                                         70,
+                                         77
+                                     ],
+                          "post_delay":  500,
+                          "next":  [
+                                       "经验链-寻物-打开挂机界面成功"
+                                   ]
+                      },
+    "经验链-寻物-打开打造界面":  {
+                          "action":  "Click",
+                          "target":  [
+                                         531,
+                                         634,
+                                         439,
+                                         77
+                                     ],
+                          "post_delay":  500,
+                          "next":  [
+                                       "经验链-寻物-打开打造界面成功"
+                                   ]
+                      },
+    "主界面-三界奇缘":  {
+                     "recognition":  "TemplateMatch",
+                     "template":  [
+                                      "zonghe/jiahao.png",
+                                      "zonghe/chenghao.png",
+                                      "zonghe/baoguo.png",
+                                      "zonghe/baoguo_man.png"
+                                  ],
+                     "roi":  [
+                                 1197,
+                                 540,
+                                 78,
+                                 157
+                             ],
+                     "post_delay":  1000,
+                     "action":  "Click",
+                     "target":  [
+                                    316,
+                                    2,
+                                    79,
+                                    78
+                                ],
+                     "post_wait_freezes":  100,
+                     "next":  [
+                                  "活动-三界奇缘",
+                                  "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                  "[JumpBack]战斗平衡弹窗-点击关闭"
+                              ]
+                 },
+    "在两界山_打开小地图":  {
+                       "max_hit":  1,
+                       "recognition":  "OCR",
+                       "expected":  [
+                                        "两界山"
+                                    ],
+                       "roi":  [
+                                   105,
+                                   22,
+                                   124,
+                                   34
+                               ],
+                       "pre_delay":  1000,
+                       "action":  "Click",
+                       "target":  [
+                                      82,
+                                      22,
+                                      141,
+                                      33
+                                  ],
+                       "post_delay":  1000,
+                       "next":  [
+                                    "两界山小地图_打开成功",
+                                    "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                ]
+                   },
+    "打开大地图_传送两界山":  {
+                        "inverse":  true,
+                        "recognition":  "OCR",
+                        "expected":  [
+                                         "两界山"
+                                     ],
+                        "roi":  [
+                                    105,
+                                    22,
+                                    124,
+                                    34
+                                ],
+                        "pre_delay":  1000,
+                        "action":  "Click",
+                        "target":  [
+                                       8,
+                                       7,
+                                       70,
+                                       74
+                                   ],
+                        "post_delay":  1000,
+                        "next":  [
+                                     "打开大地图成功_传送两界山",
+                                     "[JumpBack]大地图界面-按键打开失败_点击图标"
+                                 ]
+                    },
+    "退出队伍过度":  {
+                   "recognition":  "TemplateMatch",
+                   "template":  [
+                                    "zonghe/chenghao.png",
+                                    "zonghe/jiahao.png"
+                                ],
+                   "roi":  [
+                               1206,
+                               637,
+                               66,
+                               57
+                           ],
+                   "pre_delay":  2000,
+                   "action":  "Click",
+                   "target":  [
+                                  1161,
+                                  104,
+                                  119,
+                                  65
+                              ],
+                   "post_delay":  2000,
+                   "next":  [
+                                "打开队伍界面成功",
+                                "[JumpBack]队伍界面-按键打开失败-点击队伍图标"
+                            ]
+               },
+    "wabaotu":  {
+                    "pre_delay":  500,
+                    "action":  "Click",
+                    "target":  [
+                                   1185,
+                                   529,
+                                   95,
+                                   110
+                               ],
+                    "post_delay":  1000,
+                    "next":  [
+                                 "挖宝图-打开背包-成功-并向上滑动到顶端",
+                                 "[JumpBack]背包界面-按键打开失败-点击图标"
+                             ]
+                },
+    "挖宝图完成判断":  {
+                    "pre_wait_freezes":  100,
+                    "action":  "Click",
+                    "target":  [
+                                   1185,
+                                   529,
+                                   95,
+                                   110
+                               ],
+                    "post_delay":  1000,
+                    "next":  [
+                                 "挖宝图完成判断-打开背包成功",
+                                 "[JumpBack]背包界面-按键打开失败-点击图标"
+                             ]
+                },
+    "主界面-门派闯关":  {
+                     "recognition":  "TemplateMatch",
+                     "template":  [
+                                      "zonghe/jiahao.png",
+                                      "zonghe/chenghao.png",
+                                      "zonghe/baoguo.png",
+                                      "zonghe/baoguo_man.png"
+                                  ],
+                     "roi":  [
+                                 1197,
+                                 540,
+                                 78,
+                                 157
+                             ],
+                     "post_delay":  500,
+                     "action":  "Click",
+                     "target":  [
+                                    316,
+                                    2,
+                                    79,
+                                    78
+                                ],
+                     "post_wait_freezes":  100,
+                     "next":  [
+                                  "活动-门派闯关",
+                                  "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                  "[JumpBack]战斗平衡弹窗-点击关闭"
+                              ]
+                 },
+    "主界面-迷魂塔":  {
+                    "recognition":  "TemplateMatch",
+                    "template":  [
+                                     "zonghe/jiahao.png",
+                                     "zonghe/chenghao.png",
+                                     "zonghe/baoguo.png",
+                                     "zonghe/baoguo_man.png"
+                                 ],
+                    "roi":  [
+                                1197,
+                                540,
+                                78,
+                                157
+                            ],
+                    "post_delay":  500,
+                    "action":  "Click",
+                    "target":  [
+                                   316,
+                                   2,
+                                   79,
+                                   78
+                               ],
+                    "post_wait_freezes":  100,
+                    "next":  [
+                                 "活动-迷魂塔",
+                                 "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                 "[JumpBack]战斗平衡弹窗-点击关闭"
+                             ]
+                },
+    "主界面-召唤灵梦境":  {
+                      "recognition":  "TemplateMatch",
+                      "template":  [
+                                       "zonghe/jiahao.png",
+                                       "zonghe/chenghao.png",
+                                       "zonghe/baoguo.png",
+                                       "zonghe/baoguo_man.png"
+                                   ],
+                      "roi":  [
+                                  1197,
+                                  540,
+                                  78,
+                                  157
+                              ],
+                      "post_delay":  500,
+                      "action":  "Click",
+                      "target":  [
+                                     316,
+                                     2,
+                                     79,
+                                     78
+                                 ],
+                      "post_wait_freezes":  100,
+                      "next":  [
+                                   "活动-召唤灵梦境",
+                                   "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                   "[JumpBack]战斗平衡弹窗-点击关闭"
+                               ]
+                  },
+    "主界面-百草谷":  {
+                    "recognition":  "TemplateMatch",
+                    "template":  [
+                                     "zonghe/jiahao.png",
+                                     "zonghe/chenghao.png",
+                                     "zonghe/baoguo.png",
+                                     "zonghe/baoguo_man.png"
+                                 ],
+                    "roi":  [
+                                1197,
+                                540,
+                                78,
+                                157
+                            ],
+                    "action":  "Click",
+                    "target":  [
+                                   316,
+                                   2,
+                                   79,
+                                   78
+                               ],
+                    "post_delay":  2000,
+                    "post_wait_freezes":  500,
+                    "next":  [
+                                 "活动-百草谷",
+                                 "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                 "[JumpBack]战斗平衡弹窗-点击关闭"
+                             ]
+                },
+    "主界面-九黎":  {
+                   "recognition":  "TemplateMatch",
+                   "template":  [
+                                    "zonghe/jiahao.png",
+                                    "zonghe/chenghao.png",
+                                    "zonghe/baoguo.png",
+                                    "zonghe/baoguo_man.png"
+                                ],
+                   "roi":  [
+                               1197,
+                               540,
+                               78,
+                               157
+                           ],
+                   "action":  "Click",
+                   "target":  [
+                                  316,
+                                  2,
+                                  79,
+                                  78
+                              ],
+                   "post_delay":  2000,
+                   "post_wait_freezes":  500,
+                   "next":  [
+                                "活动-九黎",
+                                "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                "[JumpBack]战斗平衡弹窗-点击关闭"
+                            ]
+               },
+    "主界面-迷阵":  {
+                   "recognition":  "TemplateMatch",
+                   "template":  [
+                                    "zonghe/jiahao.png",
+                                    "zonghe/chenghao.png",
+                                    "zonghe/baoguo.png",
+                                    "zonghe/baoguo_man.png"
+                                ],
+                   "roi":  [
+                               1197,
+                               540,
+                               78,
+                               157
+                           ],
+                   "action":  "Click",
+                   "target":  [
+                                  316,
+                                  2,
+                                  79,
+                                  78
+                              ],
+                   "post_delay":  2000,
+                   "post_wait_freezes":  500,
+                   "next":  [
+                                "活动-迷阵",
+                                "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                "[JumpBack]战斗平衡弹窗-点击关闭"
+                            ]
+               },
+    "主界面-五行修业":  {
+                     "recognition":  "TemplateMatch",
+                     "template":  [
+                                      "zonghe/jiahao.png",
+                                      "zonghe/chenghao.png",
+                                      "zonghe/baoguo.png",
+                                      "zonghe/baoguo_man.png"
+                                  ],
+                     "roi":  [
+                                 1197,
+                                 540,
+                                 78,
+                                 157
+                             ],
+                     "post_delay":  500,
+                     "action":  "Click",
+                     "target":  [
+                                    316,
+                                    2,
+                                    79,
+                                    78
+                                ],
+                     "post_wait_freezes":  100,
+                     "next":  [
+                                  "[JumpBack]展开-首页任务栏",
+                                  "[JumpBack]任务栏切换为任务",
+                                  "[JumpBack]baotu_huadong_down",
+                                  "五行修业-领取任务成功",
+                                  "活动-五行修业",
+                                  "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                  "[JumpBack]战斗平衡弹窗-点击关闭"
+                              ]
+                 },
+    "主界面-运镖":  {
+                   "recognition":  "TemplateMatch",
+                   "template":  [
+                                    "zonghe/jiahao.png",
+                                    "zonghe/chenghao.png",
+                                    "zonghe/baoguo.png",
+                                    "zonghe/baoguo_man.png"
+                                ],
+                   "roi":  [
+                               1197,
+                               540,
+                               78,
+                               157
+                           ],
+                   "pre_delay":  1000,
+                   "action":  "Click",
+                   "target":  [
+                                  316,
+                                  2,
+                                  79,
+                                  78
+                              ],
+                   "post_wait_freezes":  100,
+                   "next":  [
+                                "活动-运镖",
+                                "[JumpBack]活动-界面-打开失败-点击活动图片",
+                                "[JumpBack]战斗平衡弹窗-点击关闭"
+                            ]
+               },
+    "整理背包-过渡":  {
+                    "recognition":  "TemplateMatch",
+                    "template":  [
+                                     "zonghe/chenghao.png",
+                                     "zonghe/jiahao.png"
+                                 ],
+                    "roi":  [
+                                1206,
+                                637,
+                                66,
+                                57
+                            ],
+                    "pre_delay":  2000,
+                    "action":  "Click",
+                    "target":  [
+                                   1185,
+                                   529,
+                                   95,
+                                   110
+                               ],
+                    "post_delay":  1000,
+                    "next":  [
+                                 "打开背包成功-向上滑动到顶端",
+                                 "[JumpBack]背包界面-按键打开失败-点击图标"
+                             ]
+                },
+    "打开大地图_捉鬼":  {
+                     "pre_delay":  500,
+                     "action":  "Click",
+                     "target":  [
+                                    8,
+                                    7,
+                                    70,
+                                    74
+                                ],
+                     "post_delay":  1000,
+                     "next":  [
+                                  "传送长安城_捉鬼",
+                                  "[JumpBack]大地图界面-按键打开失败_点击图标"
+                              ]
+                 },
+    "打开小地图-钟馗":  {
+                     "pre_delay":  500,
+                     "action":  "Click",
+                     "target":  [
+                                    82,
+                                    22,
+                                    141,
+                                    33
+                                ],
+                     "post_delay":  1000,
+                     "next":  [
+                                  "点击钟馗",
+                                  "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                              ]
+                 },
+    "捉鬼-领取任务失败-再次尝试领取-打开小地图":  {
+                                   "max_hit":  1,
+                                   "pre_delay":  500,
+                                   "action":  "Click",
+                                   "target":  [
+                                                  82,
+                                                  22,
+                                                  141,
+                                                  33
+                                              ],
+                                   "post_delay":  1000,
+                                   "next":  [
+                                                "捉鬼-领取任务失败-再次尝试领取-点击钟馗",
+                                                "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                            ]
+                               },
+    "捉鬼-队伍人员满员判断":  {
+                        "pre_delay":  1000,
+                        "action":  "Click",
+                        "target":  [
+                                       1161,
+                                       104,
+                                       119,
+                                       65
+                                   ],
+                        "post_delay":  2000,
+                        "next":  [
+                                     "捉鬼-进入组队界面成功",
+                                     "[JumpBack]捉鬼-取消钟馗接取任务列表",
+                                     "[JumpBack]队伍界面-按键打开失败-点击队伍图标"
+                                 ]
+                    },
+    "抓鬼-关闭组队后打开小地图":  {
+                          "pre_delay":  500,
+                          "action":  "Click",
+                          "target":  [
+                                         82,
+                                         22,
+                                         141,
+                                         33
+                                     ],
+                          "post_delay":  1000,
+                          "next":  [
+                                       "抓鬼-关闭组队后打开小地图点击钟馗",
+                                       "[JumpBack]小地图-按键打开失败-点击小地图图标"
+                                   ]
+                      },
+    "混队-抓鬼-打开队伍界面":  {
+                         "pre_delay":  500,
+                         "action":  "Click",
+                         "target":  [
+                                        1161,
+                                        104,
+                                        119,
+                                        65
+                                    ],
+                         "post_delay":  500,
+                         "next":  [
+                                      "混队-抓鬼-未在队伍中-开始混队捉鬼任务",
+                                      "[JumpBack]队伍界面-按键打开失败-点击队伍图标"
+                                  ]
+                     },
+    "混队-抓鬼-打开挂机界面":  {
+                         "recognition":  "TemplateMatch",
+                         "template":  [
+                                          "zonghe/jiahao.png",
+                                          "zonghe/chenghao.png",
+                                          "zonghe/baoguo.png",
+                                          "zonghe/baoguo_man.png"
+                                      ],
+                         "roi":  [
+                                     1197,
+                                     540,
+                                     78,
+                                     157
+                                 ],
+                         "post_delay":  2000,
+                         "action":  "Click",
+                         "target":  [
+                                        470,
+                                        3,
+                                        70,
+                                        77
+                                    ],
+                         "post_wait_freezes":  100,
+                         "next":  [
+                                      "混队-抓鬼-挂机主界面",
+                                      "[JumpBack]挂机-界面-打开失败-点击挂机图片"
+                                  ]
+                     }
+}

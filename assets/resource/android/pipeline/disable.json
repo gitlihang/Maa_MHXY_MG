@@ -1,0 +1,12 @@
+{
+    "disable": {
+        "next": [
+            "停止游戏"
+        ]
+    },
+    "停止游戏": {
+        "action": "StopApp",
+        "package": "com.netease.my",
+        "post_delay": 2000
+    }
+}

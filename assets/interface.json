@@ -29,6 +29,17 @@
     },
     "resource": [
         {
+            "name":  "安卓真机",
+            "path":  [
+                 "./resource/base",
+                 "./resource/android"
+            ],
+            "controller":  [
+                "ADB"
+            ],
+            "description":  "适用于安卓真机，按键操作改为点击图标，修复副本卡点问题"
+        },
+        {
             "name": "官方混服",
             "path": [
                 "./resource/base"
@@ -106,6 +117,10 @@
         "tasks/zhengli_baibao.json",
         "tasks/zhuogui_hundui.json",
         "tasks/zhuoguirenwu.json",
+        "tasks/launch.json",
+        "tasks/disable.json",
+        "tasks/mengghuan_xiaomi.json",
+        "tasks/preset/Android.json",
         "tasks/preset/all.json",
         "tasks/preset/Captain.json",
         "tasks/preset/other.json",

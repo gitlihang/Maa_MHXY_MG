@@ -5,19 +5,166 @@ MAA 自定义动作：拓印自动描摹（折线版）
 - 每个笔画用一次"连续折线滑动"(touch_down -> touch_move* -> touch_up) 执行，
   笔画内不抬手，仅笔画之间抬笔，避免逐条 post_swipe 造成的笔画断裂
 - 限制笔画数 ≤ 10
+
+Android 适配：cv2 / scikit-image 在 Android (CPython 3.13) 上无可用 wheel，
+以下图像处理全部改用纯 numpy 实现（颜色转换 / inRange / 3x3 闭运算 /
+Zhang-Suen 骨架化 / Douglas-Peucker 折线简化），行为与桌面端保持一致。
 """
 
 import time
 import random
 import math
 import numpy as np
-import cv2
-from skimage.morphology import skeletonize
 
 from maa.custom_action import CustomAction
 from maa.context import Context
 from utils import logger
 from maa.agent.agent_server import AgentServer
+
+
+# ------------------------------------------------------------------
+# 纯 numpy 图像处理工具（替代 cv2 / skimage 在桌面端承担的工作）
+# ------------------------------------------------------------------
+
+def _bgr_to_rgb(image_bgr):
+    """等价 cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)"""
+    return image_bgr[..., ::-1]
+
+
+def _in_range(roi_img, lower, upper):
+    """等价 cv2.inRange(roi_img, lower, upper)，返回 uint8 0/255 mask"""
+    return np.all((roi_img >= lower) & (roi_img <= upper), axis=-1).astype(np.uint8) * 255
+
+
+def _binary_dilate3(img):
+    """3x3 全 1 结构元二值膨胀（等价 cv2.morphologyEx MORPH_DILATE, 3x3, 边界补 0）"""
+    padded = np.pad(img, 1, mode="constant", constant_values=0)
+    h, w = img.shape
+    out = np.zeros_like(img)
+    for dy in range(3):
+        for dx in range(3):
+            out |= padded[dy:dy + h, dx:dx + w]
+    return out
+
+
+def _binary_erode3(img):
+    """3x3 全 1 结构元二值腐蚀（等价 cv2.morphologyEx MORPH_ERODE, 3x3, 边界补 255）"""
+    padded = np.pad(img, 1, mode="constant", constant_values=255)
+    h, w = img.shape
+    out = np.full_like(img, 255)
+    for dy in range(3):
+        for dx in range(3):
+            out &= padded[dy:dy + h, dx:dx + w]
+    return out
+
+
+def _morph_close3(mask):
+    """等价 cv2.morphologyEx(mask, cv2.MORPH_CLOSE, 3x3, iterations=1)"""
+    return _binary_erode3(_binary_dilate3(mask))
+
+
+def _zhang_suen(binary):
+    """
+    Zhang-Suen 细化，等价 skimage.morphology.skeletonize(..., method='zhang')。
+    binary: bool 数组，返回 bool 骨架。
+    """
+    img = binary.astype(bool)
+    changed = True
+    while changed:
+        changed = False
+        p = np.pad(img, 1, mode="constant", constant_values=False)
+        p2 = p[0:-2, 1:-1]
+        p3 = p[0:-2, 2:]
+        p4 = p[1:-1, 2:]
+        p5 = p[2:, 2:]
+        p6 = p[2:, 1:-1]
+        p7 = p[2:, 0:-2]
+        p8 = p[1:-1, 0:-2]
+        p9 = p[0:-2, 0:-2]
+
+        B = (p2.astype(int) + p3.astype(int) + p4.astype(int) + p5.astype(int)
+             + p6.astype(int) + p7.astype(int) + p8.astype(int) + p9.astype(int))
+        A = (((~p2) & p3).astype(int) + ((~p3) & p4).astype(int)
+             + ((~p4) & p5).astype(int) + ((~p5) & p6).astype(int)
+             + ((~p6) & p7).astype(int) + ((~p7) & p8).astype(int)
+             + ((~p8) & p9).astype(int) + ((~p9) & p2).astype(int))
+
+        # Step 1
+        c1 = (~p2) | (~p4) | (~p6)
+        c2 = (~p4) | (~p6) | (~p8)
+        m1 = img & (B >= 2) & (B <= 6) & (A == 1) & c1 & c2
+        if m1.any():
+            img[m1] = False
+            changed = True
+
+        # Step 2（基于 Step 1 更新后的图重新取邻域）
+        p = np.pad(img, 1, mode="constant", constant_values=False)
+        p2 = p[0:-2, 1:-1]
+        p3 = p[0:-2, 2:]
+        p4 = p[1:-1, 2:]
+        p5 = p[2:, 2:]
+        p6 = p[2:, 1:-1]
+        p7 = p[2:, 0:-2]
+        p8 = p[1:-1, 0:-2]
+        p9 = p[0:-2, 0:-2]
+
+        B = (p2.astype(int) + p3.astype(int) + p4.astype(int) + p5.astype(int)
+             + p6.astype(int) + p7.astype(int) + p8.astype(int) + p9.astype(int))
+        A = (((~p2) & p3).astype(int) + ((~p3) & p4).astype(int)
+             + ((~p4) & p5).astype(int) + ((~p5) & p6).astype(int)
+             + ((~p6) & p7).astype(int) + ((~p7) & p8).astype(int)
+             + ((~p8) & p9).astype(int) + ((~p9) & p2).astype(int))
+
+        c1 = (~p2) | (~p4) | (~p8)
+        c2 = (~p2) | (~p6) | (~p8)
+        m2 = img & (B >= 2) & (B <= 6) & (A == 1) & c1 & c2
+        if m2.any():
+            img[m2] = False
+            changed = True
+
+    return img
+
+
+def _approx_poly_dp(points, epsilon):
+    """
+    Douglas-Peucker 折线简化，等价 cv2.approxPolyDP(points, epsilon, closed=False)。
+    points: Nx2 数组（可为 float/int），返回简化后的 [(x, y), ...] 列表。
+    """
+    pts = [(float(x), float(y)) for x, y in points]
+    n = len(pts)
+    if n <= 2:
+        return pts
+
+    keep = {0, n - 1}
+    stack = [(0, n - 1)]
+    while stack:
+        i0, i1 = stack.pop()
+        x0, y0 = pts[i0]
+        x1, y1 = pts[i1]
+        dx = x1 - x0
+        dy = y1 - y0
+        seg_len2 = dx * dx + dy * dy
+        max_dist = -1.0
+        max_idx = -1
+        for i in range(i0 + 1, i1):
+            x, y = pts[i]
+            if seg_len2 == 0:
+                dist = math.hypot(x - x0, y - y0)
+            else:
+                t = ((x - x0) * dx + (y - y0) * dy) / seg_len2
+                t = max(0.0, min(1.0, t))
+                px = x0 + t * dx
+                py = y0 + t * dy
+                dist = math.hypot(x - px, y - py)
+            if dist > max_dist:
+                max_dist = dist
+                max_idx = i
+        if max_dist > epsilon and max_idx != -1:
+            keep.add(max_idx)
+            stack.append((i0, max_idx))
+            stack.append((max_idx, i1))
+
+    return [pts[i] for i in sorted(keep)]
 
 
 @AgentServer.custom_action("tayin")
@@ -40,7 +187,7 @@ class tayin(CustomAction):
             return CustomAction.RunResult(success=False)
 
         # 转换为 RGB
-        image_rgb = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
+        image_rgb = _bgr_to_rgb(image_bgr)
 
         # 2. ROI 与颜色阈值
         roi = [515, 197, 320, 320]
@@ -89,7 +236,7 @@ class tayin(CustomAction):
         # 阈值提取
         lower = np.array(lower_color, dtype=np.uint8)
         upper = np.array(upper_color, dtype=np.uint8)
-        mask = cv2.inRange(roi_img, lower, upper)
+        mask = _in_range(roi_img, lower, upper)
         pixel_count = np.count_nonzero(mask)
 
         if pixel_count < 100:
@@ -97,11 +244,10 @@ class tayin(CustomAction):
             return []
 
         # 闭运算填充断裂
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-        closed = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=1)
+        closed = _morph_close3(mask)
 
         # 骨架化
-        skeleton_bool = skeletonize(closed > 0)
+        skeleton_bool = _zhang_suen(closed > 0)
         skeleton = (skeleton_bool * 255).astype(np.uint8)
 
         ys, xs = np.where(skeleton > 0)
@@ -217,9 +363,7 @@ class tayin(CustomAction):
             else:
                 epsilon = 2.0
                 while True:
-                    pts_int = pts.reshape(-1, 1, 2).astype(np.int32)
-                    approx = cv2.approxPolyDP(pts_int, epsilon, False)
-                    simplified = approx.reshape(-1, 2).tolist()
+                    simplified = _approx_poly_dp(pts, epsilon)
                     if len(simplified) <= max_points_per_stroke:
                         sampled = simplified
                         break
@@ -287,8 +431,8 @@ class tayin_TZ(CustomAction):
         context: Context,
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
-        
+        logger.info("遇见拓印，停止任务。")
+
         context.tasker.post_stop().wait()
-        logger.info("停止所有任务完成。")
 
         return CustomAction.RunResult(success=True)

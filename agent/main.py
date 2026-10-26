@@ -312,6 +312,13 @@ def agent():
 
 
 def main():
+    if sys.platform == "android":
+        # Android 上 Python 运行时与依赖已随 APK 内置（MaaAgentCoreAndroid），
+        # 无需也无法创建 venv 或通过 pip 安装依赖，直接启动 agent。
+        logger.info("Android 平台: 依赖已内置，跳过 venv/pip 逻辑")
+        agent()
+        return
+
     ensure_linux_venv_and_relaunch_if_needed()
     logger.info(f"Python解释器: {sys.executable}")
     if sys.platform.startswith("linux"):
