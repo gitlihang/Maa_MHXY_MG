@@ -21,25 +21,25 @@
         }
     ],
     "agent": {
-        "child_exec": "./python/python.exe",
+        "child_exec": "python",
         "child_args": [
-            "./agent/main.py",
+            "./../agent/main.py",
             "-u"
         ]
     },
     "resource": [
-                           {
-                         "name":  "安卓真机",
-                         "path":  [
-                                      "./resource/base",
-                                      "./resource/android"
-                                  ],
-                         "controller":  [
-                                            "ADB"
-                                        ],
-                         "description":  "适用于安卓真机，按键操作改为点击图标，修复副本卡点问题"
-                     },
-                       {
+        {
+            "name":  "安卓真机",
+            "path":  [
+                 "./resource/base",
+                 "./resource/android"
+            ],
+            "controller":  [
+                "ADB"
+            ],
+            "description":  "适用于安卓真机，按键操作改为点击图标，修复副本卡点问题"
+        },
+        {
             "name": "官方混服",
             "path": [
                 "./resource/base"
@@ -126,6 +126,5 @@
         "tasks/preset/other.json",
         "tasks/preset/TeamMember.json",
         "tasks/start_android.json"
-    ],
-    "version": "v3.0.13"
+    ]
 }

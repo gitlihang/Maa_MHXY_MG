@@ -203,7 +203,7 @@
             "[JumpBack]自动寻路中-图片识别",
             "[JumpBack]关闭三界热点",
             "[JumpBack]战斗平衡弹窗-点击关闭",
-            "挖宝图完成判断-坐标-20秒15次"
+            "挖宝图完成判断-坐标-15秒10次"
         ],
         "on_error": [
             "挖宝图完成判断"
@@ -223,15 +223,15 @@
         "action": "Click",
         "post_wait_freezes": 1000
     },
-    "挖宝图完成判断-坐标-20秒15次": {
+    "挖宝图完成判断-坐标-15秒10次": {
         "focus": {
-            "Node.Recognition.Succeeded": "挖宝图完成判断-坐标-20秒15次"
+            "Node.Recognition.Succeeded": "挖宝图完成判断-坐标-15秒10次"
         },
         "recognition": "Custom",
         "custom_recognition": "coordinate",
         "attach": {
-            "sec": 20,
-            "min_count": 15
+            "sec": 15,
+            "min_count": 10
         },
         "next": [
             "挖宝图完成判断"

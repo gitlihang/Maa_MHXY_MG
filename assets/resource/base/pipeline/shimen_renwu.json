@@ -91,6 +91,7 @@
             "师门完成确定-图片识别",
             "师门完成确定-文字识别",
             "[JumpBack]识别拓印",
+            "[JumpBack]师门任务单次点击-坐标-15秒10次",
             "[JumpBack]师门完成-九转天阶遮挡",
             "[JumpBack]师门完成-九幽遮挡",
             "[JumpBack]战斗平衡弹窗-点击关闭",
@@ -99,6 +100,21 @@
             "[JumpBack]issub_sleep-10分钟",
             "[JumpBack]师门任务-单次点击",
             "[JumpBack]issub_sleep-无限"
+        ]
+    },
+    "师门任务单次点击-坐标-15秒10次": {
+        "max_hit": 1,
+        "focus": {
+            "Node.Recognition.Succeeded": "师门任务单次点击-坐标-15秒10次"
+        },
+        "recognition": "Custom",
+        "custom_recognition": "coordinate",
+        "attach": {
+            "sec": 15,
+            "min_count": 10
+        },
+        "next": [
+            "师门任务-单次点击"
         ]
     },
     "师门-点击去完成": {
@@ -120,6 +136,7 @@
             "师门完成确定-图片识别",
             "师门完成确定-文字识别",
             "[JumpBack]识别拓印",
+            "[JumpBack]师门任务单次点击-坐标-15秒10次",
             "[JumpBack]师门完成-九转天阶遮挡",
             "[JumpBack]师门完成-九幽遮挡",
             "[JumpBack]战斗平衡弹窗-点击关闭",
@@ -136,7 +153,7 @@
         "pre_delay": 500,
         "recognition": "OCR",
         "expected": [
-            "^师门.*"
+            "^师门*"
         ],
         "threshold": 0.9,
         "roi": [
