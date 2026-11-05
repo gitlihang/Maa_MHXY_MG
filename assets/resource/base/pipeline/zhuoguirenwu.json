@@ -122,6 +122,10 @@
             "钟馗-捉鬼任务-已领取捉鬼任务"
         ]
     },
+    "关闭成就弹窗": {
+        "recognition": "TemplateMatch",
+        "template": []
+    },
     "钟馗-捉鬼任务-已领取捉鬼任务": {
         "focus": {
             "Node.Action.Succeeded": "{name}开始执行,已经领取抓鬼任务。"
@@ -387,7 +391,7 @@
     },
     "抓鬼一轮完成": {
         "focus": {
-            "Node.Recognition.Succeeded": "{name} 识别命中，抓鬼一轮完成"
+            "Node.Recognition.Succeeded": "抓鬼一轮完成"
         },
         "recognition": "OCR",
         "expected": [
@@ -400,6 +404,7 @@
             450,
             110
         ],
+        "pre_delay": 800,
         "action": "Click",
         "target": [
             718,
