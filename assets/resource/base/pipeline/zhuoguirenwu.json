@@ -386,7 +386,8 @@
             "[JumpBack]战斗中-等待100秒",
             "[JumpBack]抓鬼-点击任务栏-通用",
             "[JumpBack]任务栏切换为任务",
-            "[JumpBack]关闭福利弹窗"
+            "[JumpBack]关闭福利弹窗",
+            "[JumpBack]合并队伍_取消"
         ]
     },
     "抓鬼一轮完成": {

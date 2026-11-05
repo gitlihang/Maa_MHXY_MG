@@ -640,5 +640,26 @@
         "next": [
             "fuli_qiandao"
         ]
+    },
+    "合并队伍_取消": {
+        "recognition": "OCR",
+        "expected": [
+            "是否确认与该队伍进行队伍合并"
+        ],
+        "roi": [
+            438,
+            288,
+            397,
+            89
+        ],
+        "pre_delay": 500,
+        "action": "Click",
+        "target": [
+            476,
+            400,
+            116,
+            37
+        ],
+        "post_delay": 500
     }
 }
