@@ -249,30 +249,6 @@
         "max_hit": 60,
         "pre_delay": 10000
     },
-    "bangpai_renwu_sleep": {
-        "pre_delay": 700000,
-        "next": [
-            "[JumpBack]师门完成-九转天阶遮挡",
-            "[JumpBack]师门完成-九幽遮挡",
-            "[JumpBack]战斗平衡弹窗-点击关闭",
-            "panduan_zhujiemian"
-        ]
-    },
-    "战斗平衡弹窗-点击关闭1": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "zonghe/zhandoupingheng_guanbi1.png"
-        ],
-        "roi": [
-            1215,
-            4,
-            48,
-            51
-        ],
-        "pre_delay": 500,
-        "action": "Click",
-        "post_delay": 500
-    },
     "bangpai_huodong_down": {
         "max_hit": 15,
         "action": "Swipe",
@@ -345,13 +321,13 @@
             254,
             255
         ],
+        "pre_delay": 500,
         "action": "Click",
         "next": [
             "放弃任务_过渡"
         ]
     },
     "放弃任务_过渡": {
-        "action": "Click",
         "next": [
             "放弃任务_确认放弃",
             "[JumpBack]放弃任务_点击放弃"
