@@ -274,7 +274,7 @@
             "[JumpBack]清理主界面使用-关闭",
             "[JumpBack]战斗中-等待100秒",
             "[JumpBack]刚进正在战斗队伍中",
-            "混队-抓鬼-坐标-60秒40次-单次结束"
+            "混队-抓鬼-坐标-60秒30次-单次结束"
         ],
         "on_error": [
             "混队-抓鬼-单轮结束过渡"
@@ -293,15 +293,15 @@
         ],
         "pre_delay": 10000
     },
-    "混队-抓鬼-坐标-60秒40次-单次结束": {
+    "混队-抓鬼-坐标-60秒30次-单次结束": {
         "focus": {
-            "Node.Recognition.Succeeded": "混队-抓鬼-坐标-60秒40次-单次结束"
+            "Node.Recognition.Succeeded": "混队-抓鬼-坐标-60秒30次-单次结束"
         },
         "recognition": "Custom",
         "custom_recognition": "coordinate",
         "attach": {
             "sec": 60,
-            "min_count": 40
+            "min_count": 30
         },
         "next": [
             "混队-抓鬼-单轮结束过渡"
