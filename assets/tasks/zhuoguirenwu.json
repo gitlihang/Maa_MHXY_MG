@@ -61,24 +61,6 @@
                 }
             ]
         },
-        "抓鬼轮次输入": {
-            "type": "input",
-            "inputs": [
-                {
-                    "name": "抓鬼轮数",
-                    "pipeline_type": "int",
-                    "default": "2",
-                    "verify": "^(0|[1-9]\\d*)$"
-                }
-            ],
-            "pipeline_override": {
-                "抓鬼轮数": {
-                    "custom_action_param": {
-                        "target_count": "{抓鬼轮数}"
-                    }
-                }
-            }
-        },
         "抓鬼轮次输入2": {
             "type": "input",
             "inputs": [
