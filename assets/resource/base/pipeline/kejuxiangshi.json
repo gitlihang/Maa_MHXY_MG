@@ -161,42 +161,34 @@
     "活动-科举乡试-结束ocr": {
         "recognition": "Or",
         "any_of": [
-            "活动-科举乡试-结束ocr1",
-            "活动-科举乡试-结束ocr2"
+            {
+                "sub_name": "活动-科举乡试-结束ocr1",
+                "recognition": "OCR",
+                "expected": [
+                    "学海无涯，少侠可要多多加油吖！"
+                ],
+                "roi": [
+                    580,
+                    351,
+                    407,
+                    65
+                ]
+            },
+            {
+                "sub_name": "活动-科举乡试-结束ocr2",
+                "recognition": "OCR",
+                "expected": [
+                    "恭喜少侠成功获得科举会试的机会！记得一定要",
+                    "恭喜少侠成功获得科举会试的机会！记得一定要"
+                ],
+                "roi": [
+                    565,
+                    330,
+                    504,
+                    74
+                ]
+            }
         ],
-        "next": [
-            "panduan_zhujiemian"
-        ]
-    },
-    "活动-科举乡试-结束ocr1": {
-        "recognition": "OCR",
-        "expected": [
-            "学海无涯，少侠可要多多加油吖！"
-        ],
-        "roi": [
-            580,
-            351,
-            407,
-            65
-        ],
-        "pre_delay": 200,
-        "next": [
-            "panduan_zhujiemian"
-        ]
-    },
-    "活动-科举乡试-结束ocr2": {
-        "recognition": "OCR",
-        "expected": [
-            "恭喜少侠成功获得科举会试的机会！记得一定要",
-            "恭喜少侠成功获得科举会试的机会！记得一定要"
-        ],
-        "roi": [
-            565,
-            330,
-            504,
-            74
-        ],
-        "pre_delay": 200,
         "next": [
             "panduan_zhujiemian"
         ]

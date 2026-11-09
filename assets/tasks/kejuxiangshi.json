@@ -52,7 +52,7 @@
                 {
                     "name": "apikey",
                     "pipeline_type": "string",
-                    "default": "",
+                    "password": true,
                     "description": "API密钥"
                 },
                 {

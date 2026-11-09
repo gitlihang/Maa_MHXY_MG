@@ -203,6 +203,7 @@ class AIAnswer(CustomRecognition):
                 except (KeyError, IndexError) as e:
                     return f"解析回复时出错: {e}"
             listAnswer= get_ai_answer(question,answer)
+
             # logger.info(f"listAnswer为：{listAnswer}")
             # 点击box中心位置
             def clickBox(box):
@@ -215,16 +216,16 @@ class AIAnswer(CustomRecognition):
                 # 向用户ui界面输出日志info
                 # logger.info(f"AI返回答案：{listAnswer}。识别题目：{question}，识别答案列表：{answer}")
                 time.sleep(2)
-            if listAnswer =="A" or listAnswer == "a":
+            if "A" in listAnswer or "a" in listAnswer:
                 abox=[509,306,269,91]
                 clickBox(abox)
-            elif listAnswer =="B" or listAnswer == "b":
+            elif "B" in listAnswer or "b" in listAnswer:
                 bbox=[825,304,270,95]
                 clickBox(bbox)
-            elif listAnswer =="C" or listAnswer == "c":
+            elif "C" in listAnswer or "c" in listAnswer:
                 cbox= [506,408,268,88]
                 clickBox(cbox)
-            elif listAnswer =="D" or listAnswer == "d":
+            elif "D" in listAnswer or "d" in listAnswer:
                 dbox= [831,404,265,96]
                 clickBox(dbox)
             else:
