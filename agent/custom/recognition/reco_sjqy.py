@@ -167,7 +167,7 @@ class sjqy_tiku_V3(CustomRecognition):
             # 等待点击操作完成
             # image2 = context.tasker.controller.post_screencap().wait().get()
             # logger.info(image2)
-            logger.info(f"[color:blue]正确点击答案。[/color]识别题目：{text}。题库答案：{results_value}。匹配度：{confidence}。")
+            # logger.info(f"[color:blue]正确点击答案。[/color]识别题目：{text}。题库答案：{results_value}。匹配度：{confidence}。")
             time.sleep(2)
         else:#没找到答案，点击的一个
             time.sleep(2)

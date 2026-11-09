@@ -213,7 +213,7 @@ class AIAnswer(CustomRecognition):
                 click_job = new_context.tasker.controller.post_click(center_x, center_y)
                 click_job.wait()  # 等待点击操作完成
                 # 向用户ui界面输出日志info
-                logger.info(f"AI返回答案：{listAnswer}。识别题目：{question}，识别答案列表：{answer}")
+                # logger.info(f"AI返回答案：{listAnswer}。识别题目：{question}，识别答案列表：{answer}")
                 time.sleep(2)
             if listAnswer =="A" or listAnswer == "a":
                 abox=[509,306,269,91]
