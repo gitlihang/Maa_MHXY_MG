@@ -19,7 +19,7 @@ on:
 
 env:
   MAA_FRAMEWORK_VERSION: "v5.14.3"
-  MFAA_VERSION: "v2.16.2"
+  MFAA_VERSION: "v2.16.4"
   MXU_VERSION: "v2.7.1"
 
 permissions:
