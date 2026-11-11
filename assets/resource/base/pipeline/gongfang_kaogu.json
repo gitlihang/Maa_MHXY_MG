@@ -812,7 +812,8 @@
         "recognition": "TemplateMatch",
         "template": [
             "jineng/shoumai_wancheng.png",
-            "jineng/shoumai_wancheng2.png"
+            "jineng/shoumai_wancheng2.png",
+            "jineng/shoumai_wancheng3.png"
         ],
         "roi": [
             766,
