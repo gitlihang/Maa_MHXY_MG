@@ -18,22 +18,18 @@
     "师门-下滑任务栏-三次": {
         "max_hit": 3,
         "post_delay": 1000,
-        "action": "MultiSwipe",
-        "swipes": [
-            {
-                "begin": [
-                    1147,
-                    207,
-                    1,
-                    1
-                ],
-                "end": [
-                    1138,
-                    403,
-                    1,
-                    1
-                ]
-            }
+        "action": "Swipe",
+        "begin": [
+            1147,
+            207,
+            1,
+            1
+        ],
+        "end": [
+            1138,
+            403,
+            1,
+            1
         ]
     },
     "shimen_renwu2_dianji": {

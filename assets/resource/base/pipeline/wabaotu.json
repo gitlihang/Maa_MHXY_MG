@@ -87,6 +87,7 @@
         "action": "Click",
         "post_delay": 1000
     },
+    "5555": {},
     "挖宝图-打开背包-成功-并向上滑动到顶端": {
         "recognition": "TemplateMatch",
         "template": "beibao/beibao_jiemian_panduan.png",
@@ -97,55 +98,22 @@
             68
         ],
         "pre_delay": 1000,
-        "action": "MultiSwipe",
-        "post_delay": 1000,
-        "swipes": [
-            {
-                "starting": 0,
-                "begin": [
-                    906,
-                    185,
-                    1,
-                    1
-                ],
-                "end": [
-                    906,
-                    548,
-                    1,
-                    1
-                ]
-            },
-            {
-                "starting": 1000,
-                "begin": [
-                    906,
-                    185,
-                    1,
-                    1
-                ],
-                "end": [
-                    906,
-                    548,
-                    1,
-                    1
-                ]
-            },
-            {
-                "starting": 2000,
-                "begin": [
-                    906,
-                    185,
-                    1,
-                    1
-                ],
-                "end": [
-                    906,
-                    548,
-                    1,
-                    1
-                ]
-            }
+        "repeat": 3,
+        "repeat_delay": 1000,
+        "action": "Swipe",
+        "begin": [
+            906,
+            185,
+            1,
+            1
         ],
+        "end": [
+            906,
+            548,
+            1,
+            1
+        ],
+        "post_delay": 1000,
         "next": [
             "挖宝图-点击整理"
         ]
