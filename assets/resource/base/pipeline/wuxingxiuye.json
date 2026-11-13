@@ -67,39 +67,21 @@
         ]
     },
     "活动-五行修业-向上滑动到顶端": {
-        "action": "MultiSwipe",
-        "swipes": [
-            {
-                "starting": 0,
-                "begin": [
-                    731,
-                    129,
-                    1,
-                    1
-                ],
-                "end": [
-                    732,
-                    444,
-                    1,
-                    1
-                ]
-            },
-            {
-                "starting": 1000,
-                "begin": [
-                    731,
-                    129,
-                    1,
-                    1
-                ],
-                "end": [
-                    732,
-                    444,
-                    1,
-                    1
-                ]
-            }
+        "repeat": 2,
+        "action": "Swipe",
+        "begin": [
+            731,
+            129,
+            1,
+            1
         ],
+        "end": [
+            732,
+            444,
+            1,
+            1
+        ],
+        "repeat_delay": 1000,
         "post_delay": 800,
         "post_wait_freezes": 500,
         "next": [
