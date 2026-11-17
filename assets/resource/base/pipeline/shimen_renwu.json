@@ -182,13 +182,14 @@
         "recognition": "TemplateMatch",
         "template": [
             "zonghe/jiuyoudiyu.png",
-            "zonghe/jiuyoudiyu2.png"
+            "zonghe/jiuyoudiyu2.png",
+            "zonghe/jiuyoudiyu3.png"
         ],
         "roi": [
-            1085,
-            128,
-            64,
-            71
+            1028,
+            70,
+            199,
+            172
         ],
         "pre_delay": 1000,
         "action": "Click",
