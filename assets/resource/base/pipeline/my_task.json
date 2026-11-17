@@ -634,8 +634,8 @@
         "recognition": "Custom",
         "custom_recognition": "coordinate",
         "attach": {
-            "sec": 10,
-            "min_count": 6
+            "mode": "duration",
+            "sec": 10
         },
         "next": [
             "fuli_qiandao"

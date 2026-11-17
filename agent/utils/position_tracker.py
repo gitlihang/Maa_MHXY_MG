@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""手动记录 (地图名, 坐标)，并按时间窗口对比 value 是否一致。
+"""手动记录 (地图名, 坐标)，并判断当前位置是否已经"稳定"。
 
 底层复用 ``utils.LocalStorage``，存储结构：
 
@@ -10,24 +10,27 @@
 
 **完全手动**：record() 你调一次就多一条记录，没有后台定时器。
 
+三种判定模式（``is_stable`` / coordinate 节点的 attach.mode）：
+
+    duration（默认）: 当前坐标连续不变 >= sec 秒；不依赖节点调用频率。
+    count           : 当前坐标连续相同 >= min_count 条。
+    window          : 旧逻辑，sec 秒内 >= min_count 条且全部相同。
+
+duration / count 模式下，相邻记录间隔超过 max_gap 秒会重置连续段，
+避免上次停留留下的旧数据误触发。
+
 典型用法::
 
     from utils import PositionTracker
 
-    # 手动记录（两种写法都行）
     PositionTracker.record(dtm, zb, context=context)      # zb 是 "151,71" 这样的串
     PositionTracker.record(dtm, 151, 71, context=context) # 或者分开传
 
-    # 对比 10 秒内数据；要求至少 3 条全相同才认为"一致"
-    r = PositionTracker.compare(10, context=context, min_count=3)
-    if not r["enough"]:
-        print(f"数据不足（{r['count']} < {r['min_count']}），继续采集")
-    elif r["all_same"]:
-        print("10 秒内至少 3 条且都一致")
-    elif r["changed"]:
-        print("值变过，出现过:", r["distinct"])
+    PositionTracker.is_stable(mode="duration", sec=5, context=context)
+    PositionTracker.is_stable(mode="count", min_count=3, context=context)
+    PositionTracker.is_stable(mode="window", sec=10, min_count=6, context=context)
 
-    # 只要布尔
+    # 旧接口仍可用
     if PositionTracker.same_within(10, context=context, min_count=3):
         ...
 """
@@ -48,6 +51,10 @@ DEFAULT_MAX_RECORDS = 200
 
 # 判定 all_same 时默认至少需要多少条记录
 DEFAULT_MIN_COUNT = 2
+
+# duration 模式默认要求连续不变多少秒；count/duration 模式允许的相邻记录最大间隔
+DEFAULT_STABLE_SECONDS = 5.0
+DEFAULT_MAX_GAP_SECONDS = 5.0
 
 
 # ===== 内部工具 =====
@@ -379,6 +386,130 @@ class PositionTracker:
         只有 0 或 1 条时返回 False —— 谈不上"变过"。
         """
         return cls.compare(seconds, context=context)["changed"]
+
+    # ---------- 连续稳定段 ----------
+
+    @classmethod
+    def latest_streak(
+        cls,
+        max_gap: float = DEFAULT_MAX_GAP_SECONDS,
+        context: Any = None,
+    ) -> Dict[str, Any]:
+        """取最后一段连续相同的 value（相邻记录间隔超过 max_gap 秒就断开）。
+
+        返回::
+
+            {
+                "value":      [...] or None,
+                "count":      int,      # 连续段内记录条数
+                "started_at": int,      # 段首秒级时间戳
+                "last_at":    int,      # 段尾秒级时间戳
+                "duration":   float,    # last_at - started_at
+                "gap_broken": bool,     # 是否因间隔过大而提前断开
+            }
+        """
+        result: Dict[str, Any] = {
+            "value": None,
+            "count": 0,
+            "started_at": None,
+            "last_at": None,
+            "duration": 0.0,
+            "gap_broken": False,
+        }
+
+        items = cls.history(context=context)
+        if not items:
+            return result
+
+        try:
+            gap_limit = float(max_gap)
+        except (TypeError, ValueError):
+            gap_limit = DEFAULT_MAX_GAP_SECONDS
+
+        latest = items[-1]
+        key = _value_key(latest["value"])
+        end = len(items) - 1
+        idx = end
+        while idx > 0:
+            prev, cur = items[idx - 1], items[idx]
+            if _value_key(prev["value"]) != key:
+                break
+            if cur["timestamp"] - prev["timestamp"] > gap_limit:
+                result["gap_broken"] = True
+                break
+            idx -= 1
+
+        streak = items[idx:]
+        result["value"] = latest["value"]
+        result["count"] = len(streak)
+        result["started_at"] = streak[0]["timestamp"]
+        result["last_at"] = latest["timestamp"]
+        result["duration"] = float(latest["timestamp"] - streak[0]["timestamp"])
+        return result
+
+    @classmethod
+    def stable_for(
+        cls,
+        seconds: float,
+        context: Any = None,
+        max_gap: float = DEFAULT_MAX_GAP_SECONDS,
+    ) -> bool:
+        """当前坐标是否已经连续不变 >= seconds 秒（至少要有 2 条记录）。
+
+        只看最后一段连续相同的值，因此不要求节点每秒都调用；
+        但只要两次记录间隔超过 max_gap 秒，就当作重新出现，从头计时。
+        """
+        try:
+            need = float(seconds)
+        except (TypeError, ValueError):
+            need = DEFAULT_STABLE_SECONDS
+        if need <= 0:
+            need = DEFAULT_STABLE_SECONDS
+
+        streak = cls.latest_streak(max_gap=max_gap, context=context)
+        return streak["count"] >= 2 and streak["duration"] >= need
+
+    @classmethod
+    def consecutive(
+        cls,
+        min_count: int = DEFAULT_MIN_COUNT,
+        context: Any = None,
+        max_gap: float = DEFAULT_MAX_GAP_SECONDS,
+    ) -> bool:
+        """当前坐标是否已经连续相同 >= min_count 条（间隔超 max_gap 秒会重置）。"""
+        streak = cls.latest_streak(max_gap=max_gap, context=context)
+        return streak["count"] >= _resolve_min_count(min_count)
+
+    @classmethod
+    def is_stable(
+        cls,
+        mode: str = "duration",
+        sec: Any = None,
+        min_count: Any = None,
+        max_gap: Any = DEFAULT_MAX_GAP_SECONDS,
+        context: Any = None,
+    ) -> bool:
+        """统一入口：按 mode 选择判定方式。
+
+        mode:
+            "duration"（默认）—— 连续不变 >= sec 秒
+            "count"           —— 连续相同 >= min_count 条
+            "window"          —— 旧逻辑：sec 秒内 >= min_count 条且全部相同
+        """
+        m = str(mode or "duration").strip().lower()
+        if m in ("window", "legacy", "same_within", "time_window"):
+            seconds = DEFAULT_STABLE_SECONDS if sec is None else sec
+            count = DEFAULT_MIN_COUNT if min_count is None else min_count
+            return cls.same_within(seconds, context=context, min_count=count)
+
+        if m in ("count", "consecutive", "count_streak"):
+            return cls.consecutive(min_count, context=context, max_gap=max_gap)
+
+        return cls.stable_for(
+            DEFAULT_STABLE_SECONDS if sec is None else sec,
+            context=context,
+            max_gap=max_gap,
+        )
 
     # ---------- 维护 ----------
 

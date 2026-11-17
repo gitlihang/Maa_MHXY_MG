@@ -101,13 +101,13 @@
     "师门任务单次点击-坐标-15秒10次": {
         "max_hit": 1,
         "focus": {
-            "Node.Recognition.Succeeded": "师门任务单次点击-坐标-15秒10次"
+            "Node.Recognition.Succeeded": "师门任务单次点击-坐标-15秒"
         },
         "recognition": "Custom",
         "custom_recognition": "coordinate",
         "attach": {
-            "sec": 15,
-            "min_count": 10
+            "mode": "duration",
+            "sec": 15
         },
         "next": [
             "师门任务-单次点击"
