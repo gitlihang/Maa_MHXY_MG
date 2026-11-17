@@ -171,10 +171,10 @@
             "zonghe/shouye_huodong_zedang2.png"
         ],
         "roi": [
-            1048,
-            51,
-            66,
-            64
+            1021,
+            25,
+            204,
+            166
         ],
         "threshold": [
             0.9
