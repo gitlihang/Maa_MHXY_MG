@@ -2,20 +2,38 @@
     "chuangjianduiwu": {
         "next": [
             "队伍-打开界面",
-            "[JumpBack]panduan_zhujiemian"
+            "[JumpBack]panduan_zhujiemian",
+            "[JumpBack]打开大地图_69副本"
         ]
     },
     "队伍-打开界面": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "zonghe/chenghao.png",
-            "zonghe/jiahao.png"
-        ],
-        "roi": [
-            1206,
-            637,
-            66,
-            57
+        "recognition": "And",
+        "all_of": [
+            {
+                "recognition": "TemplateMatch",
+                "template": [
+                    "zonghe/chenghao.png",
+                    "zonghe/jiahao.png"
+                ],
+                "roi": [
+                    1206,
+                    637,
+                    66,
+                    57
+                ]
+            },
+            {
+                "recognition": "OCR",
+                "expected": [
+                    "长安城"
+                ],
+                "roi": [
+                    108,
+                    22,
+                    117,
+                    31
+                ]
+            }
         ],
         "pre_delay": 500,
         "action": "ClickKey",
