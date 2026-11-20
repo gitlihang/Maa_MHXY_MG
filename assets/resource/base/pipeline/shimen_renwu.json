@@ -93,9 +93,7 @@
             "[JumpBack]战斗平衡弹窗-点击关闭",
             "[JumpBack]关闭X9联赛弹窗",
             "[JumpBack]跳过剧情动画-快进键",
-            "[JumpBack]issub_sleep-10分钟",
-            "[JumpBack]师门任务-单次点击",
-            "[JumpBack]issub_sleep-无限"
+            "[JumpBack]issub_sleep-10分钟"
         ]
     },
     "师门任务单次点击-坐标-15秒10次": {
@@ -139,9 +137,7 @@
             "[JumpBack]关闭X9联赛弹窗",
             "[JumpBack]跳过剧情动画-快进键",
             "[JumpBack]关闭三界热点",
-            "[JumpBack]issub_sleep-10分钟",
-            "[JumpBack]师门任务-单次点击",
-            "[JumpBack]issub_sleep-无限"
+            "[JumpBack]issub_sleep-10分钟"
         ]
     },
     "师门任务-单次点击": {
