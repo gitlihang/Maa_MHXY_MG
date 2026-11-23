@@ -3,8 +3,39 @@
         {
             "name": "帮派任务",
             "entry": "bangpai_renwu",
+            "option": [
+                "是否开启任务黑名单"
+            ],
             "description": "新任务，手动"
         }
     ],
-    "option": {}
+    "option": {
+        "是否开启任务黑名单": {
+            "type": "switch",
+            "description": "开启后遇到黑名单任务（金香玉/九转/蛇胆酒/长寿面/珍露酒，进度8/10起仅蛇胆酒）会放弃并重新领取；关闭后不放弃任何任务",
+            "default_case": "Yes",
+            "cases": [
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "帮派任务单次点击": {
+                            "custom_recognition_param": {
+                                "use_blacklist": true
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "帮派任务单次点击": {
+                            "custom_recognition_param": {
+                                "use_blacklist": false
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
 }

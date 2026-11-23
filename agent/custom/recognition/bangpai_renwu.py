@@ -17,6 +17,9 @@ class BangpaiRenwuDecide(CustomRecognition):
     - 无黑名单且识别到帮派任务（青龙/白虎/朱雀/玄武）→ 返回该 OCR 框，交给节点
       ``action:"Click"`` 点击，继续 pipeline 内链路；
     - 其余 → 未命中。
+
+    黑名单总开关：``custom_recognition_param.use_blacklist``（bool，默认 True）。
+    置为 False 时不再命中黑名单，也就不会放弃/重新领取任务。
     """
 
     _ABANDON_ENTRY = "bangpai_放弃任务"
@@ -25,15 +28,16 @@ class BangpaiRenwuDecide(CustomRecognition):
     _DEFAULT_ROI = [1034, 171, 235, 336]
     _DEFAULT_BLACKLIST = ["金香玉", "九转", "蛇胆酒", "长寿面", "珍露酒"]
     _DEFAULT_BLACKLIST_AFTER8 = ["蛇胆酒"]
+    _DEFAULT_USE_BLACKLIST = True   # 黑名单功能总开关默认值（未传参时生效）
 
     def analyze(
         self,
         context: Context,
         argv: CustomRecognition.AnalyzeArg,
     ) -> CustomRecognition.AnalyzeResult:
-        param: dict = json.loads(argv.custom_recognition_param or "{}")
+        param = self._parse_param(argv.custom_recognition_param)
         roi = self._DEFAULT_ROI
-        blacklist = self._DEFAULT_BLACKLIST
+        use_blacklist = self._as_bool(param.get("use_blacklist"), self._DEFAULT_USE_BLACKLIST)
 
         image = context.tasker.controller.post_screencap().wait().get()
         reco = context.run_recognition(
@@ -53,11 +57,14 @@ class BangpaiRenwuDecide(CustomRecognition):
             return CustomRecognition.AnalyzeResult(box=None, detail="帮派面板无文字")
 
         full_text = "".join(r.text for r in reco.all_results)
-        if "8/10" in full_text or "9/10" in full_text or "10/10" in full_text:
+        if not use_blacklist:
+            # 黑名单总开关已关闭：跳过放弃/重领逻辑，只按任务名点击
+            _black_list = []
+        elif "8/10" in full_text or "9/10" in full_text or "10/10" in full_text:
             _black_list = self._DEFAULT_BLACKLIST_AFTER8
         else:
             _black_list = self._DEFAULT_BLACKLIST
-        # logger.info(f"[bangpai_decide] 生效黑名单={_black_list} 面板 OCR: {full_text}")
+        # logger.info(f"[bangpai_decide] 开启黑名单={use_blacklist} 生效黑名单={_black_list} 面板 OCR: {full_text}")
 
         # ① 黑名单优先：放弃 → 重新领取 → 回中心节点。
         #    本节点返回未命中（box=None），JumpBack 弹栈回到「已领取帮派任务」，
@@ -78,3 +85,32 @@ class BangpaiRenwuDecide(CustomRecognition):
         # ③ 都没有：未命中
         # logger.info("[bangpai_decide] 未识别到帮派任务，未命中")
         return CustomRecognition.AnalyzeResult(box=None, detail="未识别到帮派任务")
+
+    @staticmethod
+    def _parse_param(raw_param) -> dict:
+        """解析 custom_recognition_param，兼容 dict / JSON 字符串两种写法。"""
+        if isinstance(raw_param, dict):
+            return raw_param
+        if isinstance(raw_param, str) and raw_param.strip():
+            try:
+                data = json.loads(raw_param)
+            except json.JSONDecodeError:
+                logger.warning(f"[bangpai_decide] custom_recognition_param 解析失败: {raw_param}")
+                return {}
+            return data if isinstance(data, dict) else {}
+        return {}
+
+    @staticmethod
+    def _as_bool(value, default: bool = True) -> bool:
+        """把 pipeline 传入的开关值宽松地转成 bool，无法识别时回退 default。"""
+        if isinstance(value, bool):
+            return value
+        if isinstance(value, (int, float)):
+            return bool(value)
+        if isinstance(value, str):
+            text = value.strip().lower()
+            if text in ("true", "1", "yes", "y", "on", "开启", "是"):
+                return True
+            if text in ("false", "0", "no", "n", "off", "关闭", "否"):
+                return False
+        return default
