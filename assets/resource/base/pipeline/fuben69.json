@@ -220,12 +220,13 @@
         ],
         "action": "Click",
         "target": [
-            441,
-            368,
-            72,
-            17
+            442,
+            371,
+            69,
+            11
         ],
         "post_delay": 1000,
+        "post_wait_freezes": 1000,
         "next": [
             "[JumpBack]再次点击地图百晓仙子",
             "百晓仙子-选择副本"
@@ -554,12 +555,13 @@
         ],
         "action": "Click",
         "target": [
-            441,
-            368,
-            72,
-            17
+            442,
+            371,
+            69,
+            11
         ],
         "post_delay": 1000,
+        "post_wait_freezes": 1000,
         "next": [
             "[JumpBack]再次点击地图百晓仙子",
             "百晓仙子-选择副本-50普通-1"
@@ -691,12 +693,13 @@
         ],
         "action": "Click",
         "target": [
-            441,
-            368,
-            72,
-            17
+            442,
+            371,
+            69,
+            11
         ],
         "post_delay": 1000,
+        "post_wait_freezes": 1000,
         "next": [
             "[JumpBack]再次点击地图百晓仙子",
             "百晓仙子-选择副本-50普通-2"
