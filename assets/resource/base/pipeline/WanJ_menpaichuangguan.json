@@ -208,6 +208,7 @@
             "[JumpBack]任务栏切换为任务",
             "[JumpBack]门派-点击任务栏任务",
             "[JumpBack]门派一轮完成-领取任务",
+            "[JumpBack]门派一轮完成-点击门派闯关",
             "[JumpBack]战斗中-等待5秒"
         ]
     },
@@ -227,6 +228,7 @@
             "[JumpBack]任务栏切换为任务",
             "[JumpBack]门派-点击任务栏任务",
             "[JumpBack]门派一轮完成-领取任务",
+            "[JumpBack]门派一轮完成-点击门派闯关",
             "[JumpBack]战斗中-等待5秒"
         ]
     },
@@ -248,7 +250,21 @@
         "next": [
             "门派-点击进入战斗",
             "战斗中-等待5秒",
-            "[JumpBack]门派-再次点击任务栏任务"
+            "[JumpBack]门派-点击任务栏任务-坐标-4秒"
+        ]
+    },
+    "门派-点击任务栏任务-坐标-4秒": {
+        "focus": {
+            "Node.Recognition.Succeeded": "门派闯关-坐标-4秒"
+        },
+        "recognition": "Custom",
+        "custom_recognition": "coordinate",
+        "attach": {
+            "mode": "duration",
+            "sec": 4
+        },
+        "next": [
+            "门派-再次点击任务栏任务"
         ]
     },
     "门派-再次点击任务栏任务": {
