@@ -116,7 +116,10 @@ class ShimenRenwuDecide(CustomRecognition):
                     "roi": roi_used,
                     "expected": [""],
                     "recognition": "OCR",
-                    "threshold": 0.7
+                    "threshold": 0.7,
+                    "replace":[
+                         ["天天","夭夭"]
+                    ]
                 }
             },
         )
