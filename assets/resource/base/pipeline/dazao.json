@@ -76,7 +76,8 @@
     "打造-点击打造入口": {
         "recognition": "TemplateMatch",
         "template": [
-            "dazao/qianghua_rukou.png"
+            "dazao/qianghua_rukou.png",
+            "dazao/qianghua_rukou1.png"
         ],
         "roi": [
             531,
