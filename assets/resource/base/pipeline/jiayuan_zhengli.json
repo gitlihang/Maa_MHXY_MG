@@ -41,7 +41,10 @@
     },
     "点击家园": {
         "recognition": "TemplateMatch",
-        "template": "jiayuan/jiayuan.png",
+        "template": [
+            "jiayuan/jiayuan.png",
+            "jiayuan/jiayuan1.png"
+        ],
         "roi": [
             977,
             640,
@@ -63,7 +66,10 @@
     },
     "家园界面-按键失败-点击家园图标": {
         "recognition": "TemplateMatch",
-        "template": "jiayuan/jiayuan.png",
+        "template": [
+            "jiayuan/jiayuan.png",
+            "jiayuan/jiayuan1.png"
+        ],
         "roi": [
             977,
             640,
