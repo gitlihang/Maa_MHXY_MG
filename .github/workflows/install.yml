@@ -19,8 +19,8 @@ on:
 
 env:
   MAA_FRAMEWORK_VERSION: "v5.16.1"
-  MFAA_VERSION: "v2.16.4"
-  MXU_VERSION: "v2.10.2"
+  MFAA_VERSION: "v2.16.6"
+  MXU_VERSION: "v2.11.2"
 
 permissions:
   contents: write
